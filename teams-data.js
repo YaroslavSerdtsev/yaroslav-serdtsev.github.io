@@ -6,25 +6,25 @@ window.__TEAMS = {
 
   luckygames: {
     name: 'LuckyGames',
-    role: 'Unity Developer',
+    role: '',
     url: null
   },
 
   crazybarbarian: {
     name: 'CrazyBarbarianGames',
-    role: 'Unity Developer',
+    role: '',
     url: null
   },
 
   deadlydeals: {
     name: 'La Lune Noire',   // ← замените на реальное
-    role: 'Unity Developer',
+    role: '',
     url: null
   },
 
   playgineers: {
     name: 'Playgineers',
-    role: 'Unity Developer',
+    role: '',
     url: null
   }
 

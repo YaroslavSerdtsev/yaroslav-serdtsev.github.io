@@ -1,9 +1,15 @@
 {
-  "generatedAt": 1789130403837,
-  "count": 28,
+  "generatedAt": 1789134134272,
+  "count": 30,
+  "periods": [
+    "Ноябрь 2020 - Октябрь 2022",
+    "Октябрь 2023 - Октябрь 2024",
+    "Декабрь 2024 - Март 2025",
+    "Ноябрь 2024 - Август 2026"
+  ],
   "games": {
     "com.exorid.ClashOfMonsters": {
-      "title": "Clash Of Monsters - Data Overview",
+      "title": "Clash Of Monsters",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.ClashOfMonsters/icon.png",
       "screenshots": [
@@ -20,11 +26,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.ClashOfMonsters",
       "appmagic": "https://appmagic.rocks/google-play/clash-of-monsters/com.exorid.ClashOfMonsters",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130014479
+      "parsedAt": 1789133794434
     },
     "com.exorid.Catchtheenemysflag": {
-      "title": "Сatch the Enemy's Flag - Data Overview",
+      "title": "Сatch the Enemy's Flag",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.Catchtheenemysflag/icon.jpg",
       "screenshots": [
@@ -39,11 +46,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.Catchtheenemysflag",
       "appmagic": "https://appmagic.rocks/google-play/satch-the-enemy-s-flag/com.exorid.Catchtheenemysflag",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130025995
+      "parsedAt": 1789133804024
     },
     "stickmens.coloring.gates.runner": {
-      "title": "Stickmans Color Race - Data Overview",
+      "title": "Stickmans Color Race",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/stickmens.coloring.gates.runner/icon.png",
       "screenshots": [
@@ -59,11 +67,12 @@
       "store": "https://play.google.com/store/apps/details?id=stickmens.coloring.gates.runner",
       "appmagic": "https://appmagic.rocks/google-play/stickmans-color-race/stickmens.coloring.gates.runner",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130037694
+      "parsedAt": 1789133814075
     },
     "com.exorid.SlingDucks": {
-      "title": "Sling Ducks - Data Overview",
+      "title": "Sling Ducks",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.SlingDucks/icon.png",
       "screenshots": [
@@ -77,11 +86,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.SlingDucks",
       "appmagic": "https://appmagic.rocks/google-play/sling-ducks/com.exorid.SlingDucks",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130050109
+      "parsedAt": 1789133824801
     },
     "com.exorid.MyFoodFarm": {
-      "title": "My Food Farm - Data Overview",
+      "title": "My Food Farm",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.MyFoodFarm/icon.jpg",
       "screenshots": [
@@ -95,11 +105,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.MyFoodFarm",
       "appmagic": "https://appmagic.rocks/google-play/my-food-farm/com.exorid.MyFoodFarm",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130060729
+      "parsedAt": 1789133835598
     },
     "com.exorid.Peekaboo3D": {
-      "title": "Peekaboo Rush - Data Overview",
+      "title": "Peekaboo Rush",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.Peekaboo3D/icon.png",
       "screenshots": [
@@ -112,11 +123,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.Peekaboo3D",
       "appmagic": "https://appmagic.rocks/google-play/peekaboo-rush/com.exorid.Peekaboo3D",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130070688
+      "parsedAt": 1789133844762
     },
     "com.exorid.PushIslands": {
-      "title": "Push Islands - Data Overview",
+      "title": "Push Islands",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.PushIslands/icon.png",
       "screenshots": [
@@ -131,11 +143,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.PushIslands",
       "appmagic": "https://appmagic.rocks/google-play/push-islands/com.exorid.PushIslands",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130082106
+      "parsedAt": 1789133854477
     },
     "com.exorid.PushColor": {
-      "title": "Push Color - Data Overview",
+      "title": "Push Color",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.PushColor/icon.png",
       "screenshots": [
@@ -149,11 +162,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.PushColor",
       "appmagic": "https://appmagic.rocks/google-play/push-color/com.exorid.PushColor",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130093234
+      "parsedAt": 1789133864102
     },
     "com.exorid.ConquestMasters": {
-      "title": "Conquest Masters - Data Overview",
+      "title": "Conquest Masters",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.ConquestMasters/icon.jpg",
       "screenshots": [
@@ -167,11 +181,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.ConquestMasters",
       "appmagic": "https://appmagic.rocks/google-play/conquest-masters/com.exorid.ConquestMasters",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130103915
+      "parsedAt": 1789133873497
     },
     "com.exorid.LordsLands": {
-      "title": "Lord's Land - Data Overview",
+      "title": "Lord's Land",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.LordsLands/icon.jpg",
       "screenshots": [
@@ -185,11 +200,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.LordsLands",
       "appmagic": "https://appmagic.rocks/google-play/lord-s-land/com.exorid.LordsLands",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130114639
+      "parsedAt": 1789133882898
     },
     "com.exorid.TrashFactory": {
-      "title": "Trash Factory - Data Overview",
+      "title": "Trash Factory",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.TrashFactory/icon.jpg",
       "screenshots": [
@@ -203,11 +219,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.TrashFactory",
       "appmagic": "https://appmagic.rocks/google-play/trash-factory/com.exorid.TrashFactory",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130126715
+      "parsedAt": 1789133892472
     },
     "com.exorid.DinoEvo": {
-      "title": "Dino Evo - Data Overview",
+      "title": "Dino Evo",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.DinoEvo/icon.png",
       "screenshots": [
@@ -223,11 +240,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.DinoEvo",
       "appmagic": "https://appmagic.rocks/google-play/dino-evo/com.exorid.DinoEvo",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130140997
+      "parsedAt": 1789133903595
     },
     "com.exorid.IslandInvaders3D": {
-      "title": "Island Invaders 3D - Data Overview",
+      "title": "Island Invaders 3D",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.IslandInvaders3D/icon.jpg",
       "screenshots": [
@@ -242,11 +260,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.IslandInvaders3D",
       "appmagic": "https://appmagic.rocks/google-play/island-invaders-3d/com.exorid.IslandInvaders3D",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130152510
+      "parsedAt": 1789133913080
     },
     "com.exorid.PsychoClinic": {
-      "title": "Psycho Clinic - Data Overview",
+      "title": "Psycho Clinic",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.PsychoClinic/icon.png",
       "screenshots": [
@@ -261,11 +280,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.PsychoClinic",
       "appmagic": "https://appmagic.rocks/google-play/psycho-clinic/com.exorid.PsychoClinic",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130163856
+      "parsedAt": 1789133922384
     },
     "com.exorid.BalloonHitMaster": {
-      "title": "Balloon Hit Master - Data Overview",
+      "title": "Balloon Hit Master",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.BalloonHitMaster/icon.png",
       "screenshots": [
@@ -281,23 +301,30 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.BalloonHitMaster",
       "appmagic": "https://appmagic.rocks/google-play/balloon-hit-master/com.exorid.BalloonHitMaster",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130175450
+      "parsedAt": 1789133932184
     },
     "com.exorid.GrappleUP": {
-      "title": "AppMagic",
+      "title": "Grapple UP",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
-      "icon": null,
-      "screenshots": [],
-      "_found": 0,
+      "icon": "assets/com.exorid.GrappleUP/icon.png",
+      "screenshots": [
+        "assets/com.exorid.GrappleUP/shot-1.jpg",
+        "assets/com.exorid.GrappleUP/shot-2.jpg",
+        "assets/com.exorid.GrappleUP/shot-3.jpg",
+        "assets/com.exorid.GrappleUP/shot-4.jpg"
+      ],
+      "_found": 4,
       "store": "https://play.google.com/store/apps/details?id=com.exorid.GrappleUP",
-      "appmagic": "https://appmagic.rocks/google-play/grapple-up/com.exorid.GrappleUp",
+      "appmagic": "https://appmagic.rocks/google-play/grapple-up/com.exorid.GrappleUP",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130188018
+      "parsedAt": 1789133941061
     },
     "com.exorid.TowersOnPlains": {
-      "title": "Towers On Plains - Data Overview",
+      "title": "Towers On Plains",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.TowersOnPlains/icon.png",
       "screenshots": [
@@ -309,11 +336,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.TowersOnPlains",
       "appmagic": "https://appmagic.rocks/google-play/towers-on-plains/com.exorid.TowersOnPlains",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130197899
+      "parsedAt": 1789133950205
     },
     "com.exorid.CubeFlip": {
-      "title": "Cube Flip - Data Overview",
+      "title": "Cube Flip",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.CubeFlip/icon.jpg",
       "screenshots": [
@@ -326,11 +354,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.CubeFlip",
       "appmagic": "https://appmagic.rocks/google-play/cube-flip/com.exorid.CubeFlip",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130208574
+      "parsedAt": 1789133959049
     },
     "com.exorid.KnightsClash": {
-      "title": "Knights Clas‪h‬ - Data Overview",
+      "title": "Knights Clas‪h‬",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.KnightsClash/icon.png",
       "screenshots": [
@@ -346,11 +375,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.KnightsClash",
       "appmagic": "https://appmagic.rocks/google-play/knights-clash/com.exorid.KnightsClash",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130220865
+      "parsedAt": 1789133968926
     },
     "com.exorid.Prison": {
-      "title": "Prison Maze - Data Overview",
+      "title": "Prison Maze",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.Prison/icon.png",
       "screenshots": [
@@ -363,11 +393,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.Prison",
       "appmagic": "https://appmagic.rocks/google-play/prison-maze/com.exorid.Prison",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130231036
+      "parsedAt": 1789133978546
     },
     "com.exorid.TowerRaid": {
-      "title": "Tower Raid - Data Overview",
+      "title": "Tower Raid",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.TowerRaid/icon.png",
       "screenshots": [
@@ -380,11 +411,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.TowerRaid",
       "appmagic": "https://appmagic.rocks/google-play/tower-raid/com.exorid.TowerRaid",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130241058
+      "parsedAt": 1789133987531
     },
     "com.exorid.TwistedRoads": {
-      "title": "Twisted Roads - Data Overview",
+      "title": "Twisted Roads",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.TwistedRoads/icon.jpg",
       "screenshots": [
@@ -398,11 +430,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.TwistedRoads",
       "appmagic": "https://appmagic.rocks/google-play/twisted-roads/com.exorid.TwistedRoads",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130251427
+      "parsedAt": 1789133997084
     },
     "com.exorid.FarmCorp": {
-      "title": "Farm Corp - Data Overview",
+      "title": "Farm Corp",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.FarmCorp/icon.png",
       "screenshots": [
@@ -416,11 +449,12 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.FarmCorp",
       "appmagic": "https://appmagic.rocks/google-play/farm-corp/com.exorid.FarmCorp",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130263229
+      "parsedAt": 1789134006732
     },
     "com.exorid.MyDinoRanch": {
-      "title": "My DinoRanch - Data Overview",
+      "title": "My DinoRanch",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
       "icon": "assets/com.exorid.MyDinoRanch/icon.png",
       "screenshots": [
@@ -432,8 +466,50 @@
       "store": "https://play.google.com/store/apps/details?id=com.exorid.MyDinoRanch",
       "appmagic": "https://appmagic.rocks/google-play/my-dinoranch/com.exorid.MyDinoRanch",
       "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
       "loaded": true,
-      "parsedAt": 1789130273191
+      "parsedAt": 1789134015688
+    },
+    "com.exorid.MiniTheftAuto": {
+      "title": "Walken Speed Crime",
+      "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
+      "icon": "assets/com.exorid.MiniTheftAuto/icon.png",
+      "screenshots": [
+        "assets/com.exorid.MiniTheftAuto/shot-1.png",
+        "assets/com.exorid.MiniTheftAuto/shot-2.png",
+        "assets/com.exorid.MiniTheftAuto/shot-3.png",
+        "assets/com.exorid.MiniTheftAuto/shot-4.png",
+        "assets/com.exorid.MiniTheftAuto/shot-5.png",
+        "assets/com.exorid.MiniTheftAuto/shot-6.png",
+        "assets/com.exorid.MiniTheftAuto/shot-7.png"
+      ],
+      "_found": 7,
+      "store": "https://play.google.com/store/apps/details?id=com.exorid.MiniTheftAuto",
+      "appmagic": "https://appmagic.rocks/google-play/walken-speed-crime/com.exorid.MiniTheftAuto",
+      "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
+      "loaded": true,
+      "parsedAt": 1789134027336
+    },
+    "com.exorid.TreeCraftman3D": {
+      "title": "Tree Craftman 3D",
+      "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
+      "icon": "assets/com.exorid.TreeCraftman3D/icon.jpg",
+      "screenshots": [
+        "assets/com.exorid.TreeCraftman3D/shot-1.png",
+        "assets/com.exorid.TreeCraftman3D/shot-2.png",
+        "assets/com.exorid.TreeCraftman3D/shot-3.png",
+        "assets/com.exorid.TreeCraftman3D/shot-4.png",
+        "assets/com.exorid.TreeCraftman3D/shot-5.png",
+        "assets/com.exorid.TreeCraftman3D/shot-6.png"
+      ],
+      "_found": 6,
+      "store": "https://play.google.com/store/apps/details?id=com.exorid.TreeCraftman3D",
+      "appmagic": "https://appmagic.rocks/google-play/tree-craftman-3d/com.exorid.TreeCraftman3D",
+      "platform": "googleplay",
+      "period": "Ноябрь 2020 - Октябрь 2022",
+      "loaded": true,
+      "parsedAt": 1789134038322
     },
     "app/3395290": {
       "title": "SUMO TATAMI в Steam",
@@ -457,8 +533,9 @@
       "store": "https://store.steampowered.com/app/3395290/SUMO_TATAMI/",
       "appmagic": null,
       "platform": "steam",
+      "period": "Октябрь 2023 - Октябрь 2024",
       "loaded": true,
-      "parsedAt": 1789130301570
+      "parsedAt": 1789134059835
     },
     "app/3660360": {
       "title": "Deadly Deals в Steam",
@@ -482,14 +559,28 @@
       "store": "https://store.steampowered.com/app/3660360/Deadly_Deals/",
       "appmagic": null,
       "platform": "steam",
+      "period": "Декабрь 2024 - Март 2025",
       "loaded": true,
-      "parsedAt": 1789130346584
+      "parsedAt": 1789134076539
     },
-    "com.Playgineers.CarOutJam": {
-      "title": "Car Out Jam",
-      "loaded": false,
-      "error": "page.evaluate: Execution context was destroyed, most likely because of a navigation.",
-      "parsedAt": 1789130372097
+    "com.Playgineers2.CarOutJam": {
+      "title": "Car Out Jam: Parking Puzzle",
+      "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
+      "icon": "assets/com.Playgineers2.CarOutJam/icon.png",
+      "screenshots": [
+        "assets/com.Playgineers2.CarOutJam/shot-1.png",
+        "assets/com.Playgineers2.CarOutJam/shot-2.png",
+        "assets/com.Playgineers2.CarOutJam/shot-3.png",
+        "assets/com.Playgineers2.CarOutJam/shot-4.png",
+        "assets/com.Playgineers2.CarOutJam/shot-5.png"
+      ],
+      "_found": 5,
+      "store": "https://play.google.com/store/apps/details?id=com.Playgineers2.CarOutJam",
+      "appmagic": "https://appmagic.rocks/google-play/car-out-jam-parking-puzzle/com.Playgineers2.CarOutJam",
+      "platform": "googleplay",
+      "period": "Ноябрь 2024 - Август 2026",
+      "loaded": true,
+      "parsedAt": 1789134089484
     },
     "com.playgineers.boatescape": {
       "title": "Побег на лодках! в каталоге RuStore",
@@ -505,8 +596,9 @@
       "store": "https://www.rustore.ru/catalog/app/com.playgineers.boatescape",
       "appmagic": null,
       "platform": "rustore",
+      "period": "Ноябрь 2024 - Август 2026",
       "loaded": true,
-      "parsedAt": 1789130401986
+      "parsedAt": 1789134132309
     }
   }
 }

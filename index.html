@@ -47,6 +47,7 @@
     ::selection{background:var(--accent);color:var(--accent-ink)}
     .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad-x)}
 
+    /* Topbar */
     .topbar{
       position:sticky;top:0;z-index:50;
       backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
@@ -54,7 +55,6 @@
       border-bottom:1px solid var(--border);
     }
     .topbar__in{display:flex;align-items:center;gap:16px;height:54px}
-
     .brand{
       font-weight:600;font-size:12.5px;letter-spacing:.02em;white-space:nowrap;
       font-family:var(--font);
@@ -63,7 +63,6 @@
     }
     .brand:hover{opacity:.85}
     .brand span{color:var(--accent)}
-
     .nav{margin-left:auto;display:flex;gap:20px;font-size:12.5px}
     .nav button{
       font:inherit;font-family:var(--font);font-size:12.5px;
@@ -78,6 +77,7 @@
     .theme-btn:hover{color:var(--text);border-color:var(--border-hi)}
     .theme-btn svg{width:13px;height:13px}
 
+    /* Hero */
     .hero{padding:var(--hero-pad) 0}
     .hero__grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:center}
     .eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
@@ -90,6 +90,7 @@
     .btn--primary:hover{filter:brightness(1.07)}
     .btn[disabled]{opacity:.5;pointer-events:none}
 
+    /* Profile photo */
     .hero__photo{position:relative;justify-self:end;width:100%;max-width:280px;aspect-ratio:4/5}
     .hero__photo-frame{position:absolute;inset:0;border-radius:20px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(150deg, hsl(90 30% 18%), hsl(140 35% 10%));box-shadow:var(--shadow)}
     .hero__photo-frame::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);background-size:12px 12px;pointer-events:none;z-index:0}
@@ -116,33 +117,78 @@
     .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}
     .tag{font-size:10.5px;padding:5px 10px;border-radius:7px;border:1px solid var(--border);color:var(--muted)}
 
+    /* Фильтры */
     .filters{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 28px}
     .filter{font:inherit;font-family:var(--font);font-size:12px;padding:6px 12px;border-radius:999px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:.2s ease}
     .filter:hover{color:var(--text);border-color:var(--border-hi)}
     .filter.is-active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:500}
     .filter em{font-style:normal;opacity:.55;margin-left:4px;font-size:10.5px}
 
-    .timeline{position:relative;padding-left:28px}
-    .timeline::before{
-      content:"";position:absolute;left:4px;top:8px;bottom:8px;width:1px;
+    /* Дерево */
+    .timeline-tree{position:relative;padding-left:28px}
+    .timeline-tree::before{
+      content:"";position:absolute;left:7px;top:8px;bottom:8px;width:1px;
       background:linear-gradient(to bottom,
-      var(--accent) 0%, var(--border) 8%, var(--border) 92%, transparent 100%);
-      opacity:.6;
+      var(--accent) 0%, var(--border) 6%, var(--border) 94%, transparent 100%);
+      opacity:.55;pointer-events:none;z-index:0;
     }
-    .period{position:relative;padding:0 0 40px}
+
+    .year-group{position:relative;padding-bottom:36px}
+    .year-group:last-child{padding-bottom:0}
+    .year-group[hidden]{display:none}
+
+    .year-group__head{position:relative;display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+    .year-group__head::before{
+      content:"";position:absolute;left:-26px;top:1px;
+      width:11px;height:11px;border-radius:999px;
+      background:var(--accent);box-shadow:0 0 0 5px var(--glow);z-index:2;
+    }
+    .year-group__head::after{
+      content:"";position:absolute;left:-15px;top:6.5px;width:15px;height:1px;
+      background:var(--accent);opacity:.65;pointer-events:none;
+    }
+    .year-group__year{
+      font-family:var(--font);font-size:20px;font-weight:600;
+      letter-spacing:-.02em;color:var(--accent);line-height:1;
+    }
+    .year-group__meta{font-size:11px;color:var(--muted);letter-spacing:.04em}
+
+    .year-group__body{position:relative;margin-left:20px}
+    .year-group__body::before{
+      content:"";position:absolute;left:0;top:0;bottom:0;width:1px;
+      background:linear-gradient(to bottom,
+      var(--accent) 0%, var(--border) 15%, var(--border) 85%, transparent 100%);
+      opacity:.5;pointer-events:none;z-index:0;
+    }
+
+    .period{
+      position:relative;
+      padding-left:calc(16px + var(--depth, 0) * 32px);
+      padding-bottom:28px;
+    }
     .period:last-child{padding-bottom:0}
     .period[hidden]{display:none}
+
     .period::before{
-      content:"";position:absolute;left:-28px;top:5px;width:9px;height:9px;
-      border-radius:999px;background:var(--accent);
-      box-shadow:0 0 0 4px var(--glow);z-index:1;
+      content:"";position:absolute;left:-3px;top:5px;
+      width:7px;height:7px;border-radius:999px;
+      background:var(--accent);box-shadow:0 0 0 3px var(--glow);z-index:2;
     }
-    .period__head{display:block;margin-bottom:16px}
+    .period::after{
+      content:"";position:absolute;left:4px;top:8px;
+      width:calc(12px + var(--depth, 0) * 32px);height:1px;
+      background:linear-gradient(to right,
+      var(--accent) 0%,
+      color-mix(in srgb, var(--accent) 40%, transparent) 100%);
+      opacity:.55;pointer-events:none;z-index:1;
+    }
+
+    .period__head{display:block;margin-bottom:14px}
     .period__time{
-      display:block;position:static;padding:0;margin:0 0 5px;
-      font-size:11.5px;letter-spacing:.05em;color:var(--accent);white-space:nowrap;
+      display:block;padding:0;margin:0 0 5px;
+      font-size:11.5px;letter-spacing:.05em;color:var(--accent);
+      white-space:nowrap;
     }
-    .period__time::before{display:none}
     .period__info h3{margin:0 0 4px;font-size:14.5px;font-weight:600;letter-spacing:-.01em;line-height:1.3}
     .period__info h3 a{border-bottom:1px dotted var(--border-hi);transition:border-color .2s}
     .period__info h3 a:hover{border-color:var(--accent);color:var(--accent)}
@@ -153,28 +199,27 @@
       margin-top:10px;white-space:nowrap;
     }
 
-    /* Ветвление — если период пересекается с предыдущим */
-    .period[data-branch="true"]{
-      margin-left:40px;
+    /* Заглушка «парсер не запущен» */
+    .empty-state{
+      display:none;
+      padding:32px 24px;
+      border:1px dashed var(--border);
+      border-radius:var(--radius);
+      background:var(--bg-soft);
+      color:var(--muted);
+      font-size:13.5px;
+      max-width:62ch;
     }
-    .period[data-branch="true"]::before{
-      width:8px;
-      height:8px;
-      top:5px;
-    }
-    .period[data-branch="true"]::after{
-      content:"";
-      position:absolute;
-      left:-64px;
-      top:9px;
-      width:44px;
-      height:1px;
-      background:linear-gradient(to right,
-      var(--accent) 0%,
-      color-mix(in srgb, var(--accent) 55%, transparent) 55%,
-      transparent 100%);
-      pointer-events:none;
-      z-index:0;
+    .empty-state.is-visible{display:block}
+    .empty-state b{color:var(--text);font-weight:500}
+    .empty-state code{
+      font-family:var(--font);
+      background:var(--bg);
+      padding:2px 6px;
+      border-radius:5px;
+      border:1px solid var(--border);
+      font-size:12.5px;
+      color:var(--accent);
     }
 
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--grid-min),1fr));gap:var(--grid-gap)}
@@ -193,6 +238,7 @@
     .card__title{margin:10px 1px 0;font-size:12.5px;font-weight:500;letter-spacing:-.01em;line-height:1.3}
     .card__meta{margin:2px 1px 0;font-size:9.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
+    /* Модалка */
     .modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
     .modal.is-open{display:flex}
     .modal__backdrop{position:absolute;inset:0;background:color-mix(in srgb, var(--bg) 72%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);animation:fadeIn .22s ease}
@@ -243,6 +289,7 @@
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
     @keyframes modalIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
 
+    /* Лайтбокс */
     .lightbox{
       position:fixed;inset:0;z-index:200;display:none;
       background:color-mix(in srgb, var(--bg) 92%, transparent);
@@ -345,23 +392,22 @@
       .filters::-webkit-scrollbar{display:none}
       .filter{flex:0 0 auto;font-size:11.5px;padding:6px 11px}
 
-      .timeline{padding-left:22px}
-      .timeline::before{left:3px;top:6px;bottom:6px}
-      .period{padding-bottom:32px}
-      .period::before{left:-22px;top:4px;width:8px;height:8px}
+      .timeline-tree{padding-left:22px}
+      .timeline-tree::before{left:5px;top:6px;bottom:6px}
+      .year-group{padding-bottom:28px}
+      .year-group__head::before{left:-20px;top:1px;width:9px;height:9px;box-shadow:0 0 0 4px var(--glow)}
+      .year-group__head::after{left:-13px;top:5.5px;width:13px}
+      .year-group__year{font-size:17px}
+      .year-group__meta{font-size:10px}
+      .year-group__body{margin-left:16px}
+      .period{padding-left:calc(14px + var(--depth, 0) * 26px);padding-bottom:22px}
+      .period::before{left:-2.5px;top:5px;width:6px;height:6px;box-shadow:0 0 0 3px var(--glow)}
+      .period::after{left:3.5px;top:7.5px;width:calc(10px + var(--depth, 0) * 26px)}
+      .period__head{margin-bottom:12px}
       .period__time{font-size:11px;margin-bottom:3px}
       .period__info h3{font-size:13.5px;margin:0 0 3px}
       .period__info p{font-size:12px;line-height:1.5}
       .period__count{font-size:10px;padding:3px 8px;margin-top:8px}
-
-      /* Мобильное ветвление */
-      .period[data-branch="true"]{margin-left:28px}
-      .period[data-branch="true"]::before{width:7px;height:7px;top:4.5px}
-      .period[data-branch="true"]::after{
-        left:-46px;
-        top:8px;
-        width:32px;
-      }
 
       .card__title{font-size:11.5px;margin-top:8px}
       .card__meta{font-size:9px}
@@ -474,10 +520,19 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <h2>Опыт и проекты</h2>
-        <p>Периоды работы и игры, над которыми я работал</p>
       </div>
       <div class="filters reveal" id="filters"></div>
-      <div class="timeline" id="periods"></div>
+
+      <div class="empty-state" id="emptyState">
+        <b>Данные не загружены.</b> Список игр берётся из файла <code>games-data.js</code>,
+        который создаётся парсером. Откройте консоль в папке портфолио и запустите:
+        <br><br>
+        <code>node parse-games.mjs</code>
+        <br><br>
+        Затем обновите страницу.
+      </div>
+
+      <div class="timeline-tree" id="periods"></div>
     </div>
   </section>
 
@@ -512,17 +567,67 @@
 
 <script>
   /* =========================================================
-     1. ПЕРИОДЫ
+     1. МЕТАДАННЫЕ ПЕРИОДОВ
+     ─ Только команды и заметки. Привязка — по точному совпадению
+       строки периода с тем, что указано в my_games_portfolio.txt.
+     ─ Если периода здесь нет, он всё равно отрендерится —
+       просто без подписи команды и описания.
      ========================================================= */
-  const PERIODS = [
-    { id: 'exorid',  label: 'Ноябрь 2020 — Октябрь 2022', teams: ['luckygames'],     note: 'Разработка и поддержка мобильных игр: геймплей, UI, интеграции SDK, оптимизация, публикации в Google Play.' },
-    { id: 'steam',   label: 'Октябрь 2023 — Октябрь 2024', teams: ['crazybarbarian'], note: 'Разработка и релиз игры в Steam.' },
-    { id: 'deadly',  label: 'Декабрь 2024 — Март 2025',   teams: ['deadlydeals'],    note: 'Разработка и релиз игры в Steam.' },
-    { id: 'rustore', label: 'Ноябрь 2024 — Август 2026',   teams: ['playgineers'],    note: 'Разработка игр для RuStore.' }
+  const PERIOD_META = [
+    {
+      label: 'Ноябрь 2020 - Октябрь 2022',
+      teams: ['luckygames'],
+      note: 'Разработка и поддержка мобильных игр'
+    },
+    {
+      label: 'Октябрь 2023 - Октябрь 2024',
+      teams: ['crazybarbarian'],
+      note: 'Разработка игры в Steam'
+    },
+    {
+      label: 'Декабрь 2024 - Март 2025',
+      teams: ['deadlydeals'],
+      note: 'Разработка игры в Steam'
+    },
+    {
+      label: 'Ноябрь 2024 - Август 2026',
+      teams: ['playgineers'],
+      note: 'Разработка и поддержка мобильных игр'
+    }
   ];
 
   /* =========================================================
-     1.1. ПАРСИНГ ДАТ И ОПРЕДЕЛЕНИЕ ПЕРЕСЕЧЕНИЙ
+     2. ПЛАТФОРМЫ
+     ========================================================= */
+  const PLATFORMS = {
+    googleplay: { label: 'Google Play', short: 'GP' },
+    steam:      { label: 'Steam',       short: 'ST' },
+    rustore:    { label: 'RuStore',     short: 'RS' }
+  };
+
+  /* =========================================================
+     3. ДАННЫЕ (заполняются из games-data.js)
+     ========================================================= */
+  let GAMES = [];      // плоский список игр
+  let PERIODS = [];    // упорядоченный список периодов, собранный из игр
+
+  /* =========================================================
+     4. ХЕЛПЕРЫ
+     ========================================================= */
+  const initials = s => s.replace(/[^\p{L}\p{N} ]/gu, ' ')
+    .split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+  const hueOf = s => { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) % 360; return h; };
+  const esc = s => String(s == null ? '' : s)
+    .replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+  const plural = (n, one, few, many) => {
+    const m10 = n % 10, m100 = n % 100;
+    if (m10 === 1 && m100 !== 11) return one;
+    if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return few;
+    return many;
+  };
+
+  /* =========================================================
+     5. ПАРСИНГ ДАТ И ВЕТВЛЕНИЕ
      ========================================================= */
   const RU_MONTHS = {
     'январь': 0, 'января': 0,
@@ -541,8 +646,9 @@
 
   function parsePeriodRange(label) {
     if (!label) return null;
-    const parts = label.split(/\s*[—–]\s*/).map(s => s.trim());
-    if (parts.length !== 2) return null;
+    // поддерживаем и «—», и «-»
+    const parts = label.split(/\s*[—–-]\s*/).map(s => s.trim()).filter(Boolean);
+    if (parts.length < 2) return null;
 
     const parseOne = (str, isEnd) => {
       const m = str.match(/^(\p{L}+)\s+(\d{4})$/u);
@@ -559,101 +665,53 @@
     };
 
     const start = parseOne(parts[0], false);
-    const end = parseOne(parts[1], true);
+    const end = parseOne(parts[parts.length - 1], true);
     if (!start || !end) return null;
     return { start, end };
   }
 
   function periodsOverlap(a, b) {
-    const ra = parsePeriodRange(a.label);
-    const rb = parsePeriodRange(b.label);
+    const ra = parsePeriodRange(a);
+    const rb = parsePeriodRange(b);
     if (!ra || !rb) return false;
     return ra.start <= rb.end && rb.start <= ra.end;
   }
 
-  /* =========================================================
-     2. ПЛАТФОРМЫ И ЗАГЛУШКИ
-     ========================================================= */
-  const PLATFORMS = {
-    googleplay: { label: 'Google Play', short: 'GP' },
-    steam:      { label: 'Steam',       short: 'ST' },
-    rustore:    { label: 'RuStore',     short: 'RS' }
-  };
+  function computeDepths(periodLabels) {
+    const depths = [];
+    for (let i = 0; i < periodLabels.length; i++) {
+      let d = 0;
+      for (let j = 0; j < i; j++) {
+        if (periodsOverlap(periodLabels[i], periodLabels[j])) {
+          d = Math.max(d, depths[j] + 1);
+        }
+      }
+      depths.push(d);
+    }
+    return depths;
+  }
 
-  const STUB = [
-    { t:'Clash of Monsters',        p:'com.exorid.ClashOfMonsters',       k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.ClashOfMonsters',       am:'https://appmagic.rocks/google-play/clash-of-monsters/com.exorid.ClashOfMonsters' },
-    { t:'Catch the Enemy\'s Flag',  p:'com.exorid.Catchtheenemysflag',    k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.Catchtheenemysflag',    am:'https://appmagic.rocks/google-play/satch-the-enemy-s-flag/com.exorid.Catchtheenemysflag' },
-    { t:'Stickman\'s Color Race',   p:'stickmens.coloring.gates.runner',  k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=stickmens.coloring.gates.runner',  am:'https://appmagic.rocks/google-play/stickmans-color-race/stickmens.coloring.gates.runner' },
-    { t:'Sling Ducks',              p:'com.exorid.SlingDucks',            k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.SlingDucks',            am:'https://appmagic.rocks/google-play/sling-ducks/com.exorid.SlingDucks' },
-    { t:'My Food Farm',             p:'com.exorid.MyFoodFarm',            k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.MyFoodFarm',            am:'https://appmagic.rocks/google-play/my-food-farm/com.exorid.MyFoodFarm' },
-    { t:'Peekaboo Rush',            p:'com.exorid.Peekaboo3D',            k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.Peekaboo3D',            am:'https://appmagic.rocks/google-play/peekaboo-rush/com.exorid.Peekaboo3D' },
-    { t:'Push Islands',             p:'com.exorid.PushIslands',           k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.PushIslands',           am:'https://appmagic.rocks/google-play/push-islands/com.exorid.PushIslands' },
-    { t:'Push Color',               p:'com.exorid.PushColor',             k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.PushColor',             am:'https://appmagic.rocks/google-play/push-color/com.exorid.PushColor' },
-    { t:'Conquest Masters',         p:'com.exorid.ConquestMasters',       k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.ConquestMasters',       am:'https://appmagic.rocks/google-play/conquest-masters/com.exorid.ConquestMasters' },
-    { t:'Lord\'s Land',             p:'com.exorid.LordsLands',            k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.LordsLands',            am:'https://appmagic.rocks/google-play/lord-s-land/com.exorid.LordsLands' },
-    { t:'Trash Factory',            p:'com.exorid.TrashFactory',          k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.TrashFactory',          am:'https://appmagic.rocks/google-play/trash-factory/com.exorid.TrashFactory' },
-    { t:'Dino Evo',                 p:'com.exorid.DinoEvo',               k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.DinoEvo',               am:'https://appmagic.rocks/google-play/dino-evo/com.exorid.DinoEvo' },
-    { t:'Island Invaders 3D',       p:'com.exorid.IslandInvaders3D',      k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.IslandInvaders3D',      am:'https://appmagic.rocks/google-play/island-invaders-3d/com.exorid.IslandInvaders3D' },
-    { t:'Psycho Clinic',            p:'com.exorid.PsychoClinic',          k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.PsychoClinic',          am:'https://appmagic.rocks/google-play/psycho-clinic/com.exorid.PsychoClinic' },
-    { t:'Balloon Hit Master',       p:'com.exorid.BalloonHitMaster',      k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.BalloonHitMaster',      am:'https://appmagic.rocks/google-play/balloon-hit-master/com.exorid.BalloonHitMaster' },
-    { t:'Grapple Up',               p:'com.exorid.GrappleUP',             k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.GrappleUP',             am:'https://appmagic.rocks/google-play/grapple-up/com.exorid.GrappleUP' },
-    { t:'Towers on Plains',         p:'com.exorid.TowersOnPlains',        k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.TowersOnPlains',        am:'https://appmagic.rocks/google-play/towers-on-plains/com.exorid.TowersOnPlains' },
-    { t:'Cube Flip',                p:'com.exorid.CubeFlip',              k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.CubeFlip',              am:'https://appmagic.rocks/google-play/cube-flip/com.exorid.CubeFlip' },
-    { t:'Knights Clash',            p:'com.exorid.KnightsClash',          k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.KnightsClash',          am:'https://appmagic.rocks/google-play/knights-clash/com.exorid.KnightsClash' },
-    { t:'Prison Maze',              p:'com.exorid.Prison',                k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.Prison',                am:'https://appmagic.rocks/google-play/prison-maze/com.exorid.Prison' },
-    { t:'Tower Raid',               p:'com.exorid.TowerRaid',             k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.TowerRaid',             am:'https://appmagic.rocks/google-play/tower-raid/com.exorid.TowerRaid' },
-    { t:'Twisted Roads',            p:'com.exorid.TwistedRoads',          k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.TwistedRoads',          am:'https://appmagic.rocks/google-play/twisted-roads/com.exorid.TwistedRoads' },
-    { t:'Farm Corp',                p:'com.exorid.FarmCorp',              k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.FarmCorp',              am:'https://appmagic.rocks/google-play/farm-corp/com.exorid.FarmCorp' },
-    { t:'My Dino Ranch',            p:'com.exorid.MyDinoRanch',           k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.MyDinoRanch',           am:'https://appmagic.rocks/google-play/my-dinoranch/com.exorid.MyDinoRanch' },
-
-    { t:'SUMO TATAMI',              p:'app/3395290',                      k:'steam', period:'steam',  team:'crazybarbarian', u:'https://store.steampowered.com/app/3395290/SUMO_TATAMI/',  icon:'https://cdn.cloudflare.steamstatic.com/steam/apps/3395290/header.jpg' },
-    { t:'Deadly Deals',             p:'app/3660360',                      k:'steam', period:'deadly', team:'deadlydeals',    u:'https://store.steampowered.com/app/3660360/Deadly_Deals/', icon:'https://cdn.cloudflare.steamstatic.com/steam/apps/3660360/header.jpg' },
-
-    { t:'Car Out Jam',              p:'com.Playgineers.CarOutJam',        k:'rustore', period:'rustore', team:'playgineers', u:'https://www.rustore.ru/catalog/app/com.Playgineers.CarOutJam' },
-    { t:'Boat Escape',              p:'com.playgineers.boatescape',       k:'rustore', period:'rustore', team:'playgineers', u:'https://www.rustore.ru/catalog/app/com.playgineers.boatescape' }
-  ];
-
-  let GAMES = STUB.map(g => ({
-    ...g,
-    loaded: false,
-    description: '',
-    shots: [],
-    extra: {},
-    icon: g.icon || null
-  }));
+  function getStartYear(label) {
+    if (!label) return null;
+    const m = label.match(/(\d{4})/);
+    return m ? parseInt(m[1], 10) : null;
+  }
 
   /* =========================================================
-     3. ХЕЛПЕРЫ
-     ========================================================= */
-  const initials = s => s.replace(/[^\p{L}\p{N} ]/gu, ' ')
-    .split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase();
-  const hueOf = s => { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) % 360; return h; };
-  const esc = s => String(s == null ? '' : s)
-    .replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
-  const plural = (n, one, few, many) => {
-    const m10 = n % 10, m100 = n % 100;
-    if (m10 === 1 && m100 !== 11) return one;
-    if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return few;
-    return many;
-  };
-
-  /* =========================================================
-     3.1. РАБОТА С КОМАНДАМИ
+     6. КОМАНДЫ
      ========================================================= */
   function getTeam(id) {
     if (!id) return null;
     return (window.__TEAMS && window.__TEAMS[id]) || null;
   }
 
-  function buildTeamHeader(p) {
-    const ids = Array.isArray(p.teams) ? p.teams : [];
-    const teams = ids.map(getTeam).filter(Boolean);
+  function buildTeamHeader(periodLabel) {
+    const meta = PERIOD_META.find(m => m.label === periodLabel);
+    if (!meta) return { rolesHTML: '', namesHTML: '' };
 
-    if (!teams.length) {
-      const role = p.role || '';
-      const name = p.company || '';
-      return { rolesHTML: role ? esc(role) : '', namesHTML: name ? esc(name) : '' };
-    }
+    const ids = Array.isArray(meta.teams) ? meta.teams : [];
+    const teams = ids.map(getTeam).filter(Boolean);
+    if (!teams.length) return { rolesHTML: '', namesHTML: '' };
 
     const roles = [...new Set(teams.map(t => t.role).filter(Boolean))];
     const namesHTML = teams.map(t => {
@@ -666,7 +724,7 @@
   }
 
   /* =========================================================
-     3.2. ФОТО ПРОФИЛЯ
+     7. ФОТО ПРОФИЛЯ
      ========================================================= */
   (function loadProfilePhoto() {
     const img = document.getElementById('profilePhoto');
@@ -693,48 +751,82 @@
   })();
 
   /* =========================================================
-     4. ПРИМЕНЕНИЕ ДАННЫХ
+     8. ЗАГРУЗКА ДАННЫХ ИЗ games-data.js
      ========================================================= */
   function applyData(data) {
-    if (!data || !data.games) return;
-    GAMES = STUB.map(g => {
-      const d = data.games[g.p] || null;
-      if (!d) return { ...g, loaded: false, description: '', shots: [], extra: {}, icon: g.icon || null };
-      return {
-        ...g,
-        t: d.title || g.t,
-        icon: d.icon || g.icon || null,
-        description: d.description || '',
-        shots: Array.isArray(d.screenshots) ? d.screenshots : [],
-        extra: d.extra || {},
-        loaded: !!d.loaded
-      };
-    });
+    if (!data || !data.games) return false;
+
+    // Собираем игры в плоский список
+    GAMES = Object.entries(data.games).map(([pkg, d]) => ({
+      p: pkg,
+      t: d.title || pkg,
+      k: d.platform || 'googleplay',
+      u: d.store || '',
+      am: d.appmagic || null,
+      icon: d.icon || null,
+      shots: Array.isArray(d.screenshots) ? d.screenshots : [],
+      period: d.period || null,
+      extra: d.extra || {},
+      loaded: !!d.loaded
+    }));
+
+    // Определяем порядок периодов.
+    // Приоритет — тот же порядок, что в data.periods (то есть как в txt-файле).
+    const knownPeriods = Array.isArray(data.periods) ? data.periods.slice() : [];
+
+    // Добавляем периоды, которые есть у игр, но не попали в data.periods
+    for (const g of GAMES) {
+      if (g.period && !knownPeriods.includes(g.period)) knownPeriods.push(g.period);
+    }
+
+    // Оставляем только те периоды, у которых есть хотя бы одна игра
+    PERIODS = knownPeriods.filter(label =>
+      GAMES.some(g => g.period === label)
+    );
+
+    return GAMES.length > 0;
   }
 
   async function loadData() {
+    // 1. Основной путь — games-data.js, уже подключённый через <script src>
     if (window.__GAMES_DATA && window.__GAMES_DATA.games) {
-      applyData(window.__GAMES_DATA);
-      renderAll();
-      return;
+      const ok = applyData(window.__GAMES_DATA);
+      if (ok) { renderAll(); return; }
     }
+
+    // 2. Фолбэк — попробуем fetch games-data.json (работает через http)
     try {
       const res = await fetch('games-data.json', { cache: 'no-store' });
-      if (res.ok) applyData(await res.json());
-    } catch { /* файла нет — работаем на заглушках */ }
-    renderAll();
+      if (res.ok) {
+        const ok = applyData(await res.json());
+        if (ok) { renderAll(); return; }
+      }
+    } catch { /* файла нет — работаем в режиме заглушки */ }
+
+    renderEmpty();
   }
 
   /* =========================================================
-     5. РЕНДЕР
+     9. РЕНДЕР
      ========================================================= */
-  const periodsEl = document.getElementById('periods');
-  const filtersEl = document.getElementById('filters');
+  const periodsEl  = document.getElementById('periods');
+  const filtersEl  = document.getElementById('filters');
+  const emptyState = document.getElementById('emptyState');
+
+  function renderEmpty() {
+    periodsEl.innerHTML = '';
+    filtersEl.innerHTML = '';
+    emptyState.classList.add('is-visible');
+    document.querySelector('[data-stat="games"]').textContent = '0';
+    document.querySelector('[data-stat="platforms"]').textContent = '0';
+  }
 
   function cardHTML(g) {
     const h = hueOf(g.t);
     const ph = `background:linear-gradient(150deg,hsl(${h} 32% 19%),hsl(${(h + 42) % 360} 42% 9%))`;
     const hasIcon = g.icon ? ` src="${esc(g.icon)}"` : '';
+    const plat = PLATFORMS[g.k] || PLATFORMS.googleplay;
+
     return `
       <div class="card" role="button" tabindex="0" data-pkg="${esc(g.p)}"
            data-platform="${g.k}"
@@ -745,43 +837,40 @@
                decoding="async" referrerpolicy="no-referrer"
                onload="this.classList.add('loaded')"
                onerror="this.remove()">
-          <span class="chip">${PLATFORMS[g.k].short}</span>
+          <span class="chip">${plat.short}</span>
         </div>
         <div class="card__title">${esc(g.t)}</div>
         <div class="card__meta">${esc(g.p)}</div>
       </div>`;
   }
 
-  function periodHTML(p, idx, allPeriods) {
-    const games = GAMES.filter(g => g.period === p.id);
+  function periodHTML(periodLabel, depth) {
+    const games = GAMES.filter(g => g.period === periodLabel);
     if (!games.length) return '';
     const n = games.length;
     const countLabel = `${n} ${plural(n, 'проект', 'проекта', 'проектов')}`;
 
-    /* Определяем, ветвится ли этот период:
-       пересекается ли он по датам с любым из предыдущих */
-    let isBranch = false;
-    for (let i = 0; i < idx; i++) {
-      if (periodsOverlap(p, allPeriods[i])) {
-        isBranch = true;
-        break;
-      }
-    }
-
-    const { rolesHTML, namesHTML } = buildTeamHeader(p);
+    const { rolesHTML, namesHTML } = buildTeamHeader(periodLabel);
     const headerLine = [rolesHTML, namesHTML].filter(Boolean).join(' · ');
+
+    const meta = PERIOD_META.find(m => m.label === periodLabel);
+    const note = meta?.note || '';
 
     const cards = games.map((g, i) =>
       cardHTML(g).replace('class="card"', `class="card" style="--d:${Math.min(i, 14) * 35}ms"`)
     ).join('');
 
+    const isBranch = depth > 0;
+
     return `
-      <div class="period" data-period="${p.id}"${isBranch ? ' data-branch="true"' : ''}>
+      <div class="period" data-period="${esc(periodLabel)}"
+           data-depth="${depth}"${isBranch ? ' data-branch="true"' : ''}
+           style="--depth: ${depth}">
         <div class="period__head">
-          <div class="period__time">${esc(p.label)}</div>
+          <div class="period__time">${esc(periodLabel)}</div>
           <div class="period__info">
-            <h3>${headerLine}</h3>
-            <p>${esc(p.note)}</p>
+            ${headerLine ? `<h3>${headerLine}</h3>` : ''}
+            ${note ? `<p>${esc(note)}</p>` : ''}
           </div>
           <span class="period__count">${countLabel}</span>
         </div>
@@ -789,10 +878,48 @@
       </div>`;
   }
 
-  function renderAll() {
-    periodsEl.innerHTML = PERIODS.map((p, i) => periodHTML(p, i, PERIODS)).join('');
+  function yearGroupHTML(year, periodLabels) {
+    const depths = computeDepths(periodLabels);
 
-    const counts = GAMES.reduce((a, g) => (a[g.k] = (a[g.k] || 0) + 1, a), {});
+    let totalGames = 0;
+    periodLabels.forEach(label => {
+      totalGames += GAMES.filter(g => g.period === label).length;
+    });
+    const metaLabel = `${totalGames} ${plural(totalGames, 'проект', 'проекта', 'проектов')}`;
+
+    const periodsHTML = periodLabels.map((label, i) => periodHTML(label, depths[i])).join('');
+
+    return `
+      <div class="year-group" data-year="${year}">
+        <div class="year-group__head">
+          <span class="year-group__year">${year}</span>
+          <span class="year-group__meta">${metaLabel}</span>
+        </div>
+        <div class="year-group__body">
+          ${periodsHTML}
+        </div>
+      </div>`;
+  }
+
+  function renderAll() {
+    // Группируем периоды по году начала
+    const groups = new Map();
+    for (const label of PERIODS) {
+      const y = getStartYear(label);
+      if (y === null) continue;
+      if (!groups.has(y)) groups.set(y, []);
+      groups.get(y).push(label);
+    }
+
+    const sorted = [...groups.entries()].sort((a, b) => a[0] - b[0]);
+    periodsEl.innerHTML = sorted.map(([year, labels]) => yearGroupHTML(year, labels)).join('');
+
+    // Фильтры по платформам
+    const counts = GAMES.reduce((a, g) => {
+      a[g.k] = (a[g.k] || 0) + 1;
+      return a;
+    }, {});
+
     const filterDefs = [
       { key: 'all', label: 'Все', count: GAMES.length },
       ...Object.keys(PLATFORMS)
@@ -805,9 +932,11 @@
        </button>`
     ).join('');
 
+    // Статистика в hero
     document.querySelector('[data-stat="games"]').textContent = GAMES.length;
     document.querySelector('[data-stat="platforms"]').textContent = Object.keys(counts).length;
 
+    // Запускаем анимации появления
     document.querySelectorAll('.card:not(.in)').forEach(el => io.observe(el));
 
     const active = filtersEl.querySelector('.filter.is-active');
@@ -815,14 +944,21 @@
   }
 
   function applyFilter(key) {
-    periodsEl.querySelectorAll('.period').forEach(period => {
-      let visible = 0;
-      period.querySelectorAll('.card').forEach(card => {
-        const match = key === 'all' || card.dataset.platform === key;
-        card.hidden = !match;
-        if (match) visible++;
+    periodsEl.querySelectorAll('.year-group').forEach(yearGroup => {
+      let anyVisibleInGroup = false;
+
+      yearGroup.querySelectorAll('.period').forEach(period => {
+        let visibleInPeriod = 0;
+        period.querySelectorAll('.card').forEach(card => {
+          const match = key === 'all' || card.dataset.platform === key;
+          card.hidden = !match;
+          if (match) visibleInPeriod++;
+        });
+        period.hidden = visibleInPeriod === 0;
+        if (visibleInPeriod > 0) anyVisibleInGroup = true;
       });
-      period.hidden = visible === 0;
+
+      yearGroup.hidden = !anyVisibleInGroup;
     });
   }
 
@@ -834,7 +970,7 @@
   });
 
   /* =========================================================
-     6. МОДАЛКА
+     10. МОДАЛКА
      ========================================================= */
   const modal = document.getElementById('modal');
   const modalContent = document.getElementById('modalContent');
@@ -894,19 +1030,21 @@
   function renderModal(g) {
     const h = hueOf(g.t);
     const ph = `background:linear-gradient(150deg,hsl(${h} 32% 19%),hsl(${(h + 42) % 360} 42% 9%))`;
+    const plat = PLATFORMS[g.k] || PLATFORMS.googleplay;
 
     const iconHTML = g.icon
       ? `<img src="${esc(g.icon)}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`
       : `<div class="thumb__ph" style="${ph}">${esc(initials(g.t))}</div>`;
 
-    const period = PERIODS.find(p => p.id === g.period);
-    const periodBadge = period ? `<span class="tag">${esc(period.label)}</span>` : '';
+    const periodBadge = g.period ? `<span class="tag">${esc(g.period)}</span>` : '';
 
-    const team = getTeam(g.team);
+    const meta = PERIOD_META.find(m => m.label === g.period);
+    const teamId = meta?.teams?.[0];
+    const team = getTeam(teamId);
     const teamBadge = team ? `<span class="tag">${esc(team.name)}</span>` : '';
 
     const badges = [
-      `<span class="tag">${esc(PLATFORMS[g.k].label)}</span>`,
+      `<span class="tag">${esc(plat.label)}</span>`,
       teamBadge,
       periodBadge,
       ...Object.entries(g.extra || {}).map(([k, v]) => `<span class="tag">${esc(k)}: ${esc(v)}</span>`)
@@ -931,7 +1069,7 @@
           <div class="modal__badges">${badges}</div>
           <div class="modal__actions">
             <a class="btn btn--primary" href="${esc(g.u)}" target="_blank" rel="noopener">
-              Открыть в ${esc(PLATFORMS[g.k].label)}
+              Открыть в ${esc(plat.label)}
             </a>
             ${g.am ? `<a class="btn" href="${esc(g.am)}" target="_blank" rel="noopener">AppMagic</a>` : ''}
           </div>
@@ -967,7 +1105,7 @@
   });
 
   /* =========================================================
-     7. ПОЯВЛЕНИЕ, ТЕМА, ГОД
+     11. ПОЯВЛЕНИЕ, ТЕМА, ГОД
      ========================================================= */
   const io = new IntersectionObserver(entries => {
     entries.forEach(en => {
@@ -1004,7 +1142,7 @@
   });
 
   /* =========================================================
-     8. ЛАЙТБОКС
+     12. ЛАЙТБОКС
      ========================================================= */
   const lb        = document.getElementById('lightbox');
   const lbScroll  = document.getElementById('lbScroll');
@@ -1062,6 +1200,7 @@
     }
   }, true);
 
+  /* Поехали */
   loadData();
 </script>
 </body>

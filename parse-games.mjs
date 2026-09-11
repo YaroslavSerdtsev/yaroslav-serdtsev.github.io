@@ -3,9 +3,11 @@
 // С отладкой:         node parse-games.mjs --debug
 // Посмотреть браузер: node parse-games.mjs --show
 //
+// Ссылки берутся из файла my_games_portfolio.txt (рядом со скриптом).
+//
 // Результат:
 //   games-data.json      — для случая, когда сайт открыт через HTTP
-//   games-data.js        — для случая, когда страница открыта через file://
+//   games-data.js        — для случая, когда сайт открыт через file://
 //   assets/<pkg>/{icon.*, shot-1.*, ...}
 //   debug/<pkg>.{html,png,urls.json}   — только с --debug
 
@@ -20,47 +22,113 @@ const OUT_FILE   = path.join(__dirname, 'games-data.json');
 const OUT_JS     = path.join(__dirname, 'games-data.js');
 const ASSETS_DIR = path.join(__dirname, 'assets');
 const DEBUG_DIR  = path.join(__dirname, 'debug');
+const SOURCE_TXT = path.join(__dirname, 'my_games_portfolio.txt');
 
 const DEBUG = process.argv.includes('--debug');
 
 /* =========================================================
-   Список игр
+   Парсинг my_games_portfolio.txt
    ========================================================= */
-export const GAMES = [
-  { t:'Clash of Monsters',        pkg:'com.exorid.ClashOfMonsters',       platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.ClashOfMonsters',       appmagic:'https://appmagic.rocks/google-play/clash-of-monsters/com.exorid.ClashOfMonsters' },
-  { t:'Catch the Enemy\'s Flag',  pkg:'com.exorid.Catchtheenemysflag',    platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.Catchtheenemysflag',    appmagic:'https://appmagic.rocks/google-play/satch-the-enemy-s-flag/com.exorid.Catchtheenemysflag' },
-  { t:'Stickman\'s Color Race',   pkg:'stickmens.coloring.gates.runner',  platform:'googleplay', store:'https://play.google.com/store/apps/details?id=stickmens.coloring.gates.runner',  appmagic:'https://appmagic.rocks/google-play/stickmans-color-race/stickmens.coloring.gates.runner' },
-  { t:'Sling Ducks',              pkg:'com.exorid.SlingDucks',            platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.SlingDucks',            appmagic:'https://appmagic.rocks/google-play/sling-ducks/com.exorid.SlingDucks' },
-  { t:'My Food Farm',             pkg:'com.exorid.MyFoodFarm',            platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.MyFoodFarm',            appmagic:'https://appmagic.rocks/google-play/my-food-farm/com.exorid.MyFoodFarm' },
-  { t:'Peekaboo Rush',            pkg:'com.exorid.Peekaboo3D',            platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.Peekaboo3D',            appmagic:'https://appmagic.rocks/google-play/peekaboo-rush/com.exorid.Peekaboo3D' },
-  { t:'Push Islands',             pkg:'com.exorid.PushIslands',           platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.PushIslands',           appmagic:'https://appmagic.rocks/google-play/push-islands/com.exorid.PushIslands' },
-  { t:'Push Color',               pkg:'com.exorid.PushColor',             platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.PushColor',             appmagic:'https://appmagic.rocks/google-play/push-color/com.exorid.PushColor' },
-  { t:'Conquest Masters',         pkg:'com.exorid.ConquestMasters',       platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.ConquestMasters',       appmagic:'https://appmagic.rocks/google-play/conquest-masters/com.exorid.ConquestMasters' },
-  { t:'Lord\'s Land',             pkg:'com.exorid.LordsLands',            platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.LordsLands',            appmagic:'https://appmagic.rocks/google-play/lord-s-land/com.exorid.LordsLands' },
-  { t:'Trash Factory',            pkg:'com.exorid.TrashFactory',          platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.TrashFactory',          appmagic:'https://appmagic.rocks/google-play/trash-factory/com.exorid.TrashFactory' },
-  { t:'Dino Evo',                 pkg:'com.exorid.DinoEvo',               platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.DinoEvo',               appmagic:'https://appmagic.rocks/google-play/dino-evo/com.exorid.DinoEvo' },
-  { t:'Island Invaders 3D',       pkg:'com.exorid.IslandInvaders3D',      platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.IslandInvaders3D',      appmagic:'https://appmagic.rocks/google-play/island-invaders-3d/com.exorid.IslandInvaders3D' },
-  { t:'Psycho Clinic',            pkg:'com.exorid.PsychoClinic',          platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.PsychoClinic',          appmagic:'https://appmagic.rocks/google-play/psycho-clinic/com.exorid.PsychoClinic' },
-  { t:'Balloon Hit Master',       pkg:'com.exorid.BalloonHitMaster',      platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.BalloonHitMaster',      appmagic:'https://appmagic.rocks/google-play/balloon-hit-master/com.exorid.BalloonHitMaster' },
-  { t:'Grapple Up',               pkg:'com.exorid.GrappleUP',             platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.GrappleUP',             appmagic:'https://appmagic.rocks/google-play/grapple-up/com.exorid.GrappleUp' },
-  { t:'Towers on Plains',         pkg:'com.exorid.TowersOnPlains',        platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.TowersOnPlains',        appmagic:'https://appmagic.rocks/google-play/towers-on-plains/com.exorid.TowersOnPlains' },
-  { t:'Cube Flip',                pkg:'com.exorid.CubeFlip',              platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.CubeFlip',              appmagic:'https://appmagic.rocks/google-play/cube-flip/com.exorid.CubeFlip' },
-  { t:'Knights Clash',            pkg:'com.exorid.KnightsClash',          platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.KnightsClash',          appmagic:'https://appmagic.rocks/google-play/knights-clash/com.exorid.KnightsClash' },
-  { t:'Prison Maze',              pkg:'com.exorid.Prison',                platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.Prison',                appmagic:'https://appmagic.rocks/google-play/prison-maze/com.exorid.Prison' },
-  { t:'Tower Raid',               pkg:'com.exorid.TowerRaid',             platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.TowerRaid',             appmagic:'https://appmagic.rocks/google-play/tower-raid/com.exorid.TowerRaid' },
-  { t:'Twisted Roads',            pkg:'com.exorid.TwistedRoads',          platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.TwistedRoads',          appmagic:'https://appmagic.rocks/google-play/twisted-roads/com.exorid.TwistedRoads' },
-  { t:'Farm Corp',                pkg:'com.exorid.FarmCorp',              platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.FarmCorp',              appmagic:'https://appmagic.rocks/google-play/farm-corp/com.exorid.FarmCorp' },
-  { t:'My Dino Ranch',            pkg:'com.exorid.MyDinoRanch',           platform:'googleplay', store:'https://play.google.com/store/apps/details?id=com.exorid.MyDinoRanch',           appmagic:'https://appmagic.rocks/google-play/my-dinoranch/com.exorid.MyDinoRanch' },
 
-  { t:'SUMO TATAMI',              pkg:'app/3395290',                      platform:'steam',      store:'https://store.steampowered.com/app/3395290/SUMO_TATAMI/',
-    icon:'https://cdn.cloudflare.steamstatic.com/steam/apps/3395290/header.jpg' },
+function slugToTitle(slug) {
+  if (!slug) return null;
+  const small = /^(the|and|of|for|in|on|a|an|to|vs|at|by|de|la|le)$/i;
+  const parts = slug.split(/[-_]+/).filter(Boolean);
+  return parts
+    .map((w, i) => {
+      if (w.length === 0) return '';
+      if (i > 0 && small.test(w)) return w.toLowerCase();
+      if (w === w.toUpperCase() && w.length <= 6) return w;
+      return w[0].toUpperCase() + w.slice(1).toLowerCase();
+    })
+    .join(' ');
+}
 
-  { t:'Deadly Deals',             pkg:'app/3660360',                      platform:'steam',      store:'https://store.steampowered.com/app/3660360/Deadly_Deals/',
-    icon:'https://cdn.cloudflare.steamstatic.com/steam/apps/3660360/header.jpg' },
+function classifyUrl(url, periodLabel) {
+  // AppMagic (Google Play)
+  let m = url.match(/appmagic\.rocks\/google-play\/([^/]+)\/([^/?#]+)/);
+  if (m) {
+    const slug = m[1];
+    const pkg  = decodeURIComponent(m[2]);
+    return {
+      t: slugToTitle(slug),
+      pkg,
+      platform: 'googleplay',
+      store: `https://play.google.com/store/apps/details?id=${pkg}`,
+      appmagic: url,
+      period: periodLabel
+    };
+  }
 
-  { t:'Car Out Jam',              pkg:'com.Playgineers.CarOutJam',        platform:'rustore',    store:'https://www.rustore.ru/catalog/app/com.Playgineers.CarOutJam' },
-  { t:'Boat Escape',              pkg:'com.playgineers.boatescape',       platform:'rustore',    store:'https://www.rustore.ru/catalog/app/com.playgineers.boatescape' }
-];
+  // Steam
+  m = url.match(/store\.steampowered\.com\/app\/(\d+)(?:\/([^/?#]+))?/);
+  if (m) {
+    const appid = m[1];
+    const slug  = m[2] || `app-${appid}`;
+    return {
+      t: slugToTitle(slug),
+      pkg: `app/${appid}`,
+      platform: 'steam',
+      store: url,
+      icon: `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/header.jpg`,
+      period: periodLabel
+    };
+  }
+
+  // RuStore
+  m = url.match(/rustore\.ru\/catalog\/app\/([^/?#]+)/);
+  if (m) {
+    const pkg  = decodeURIComponent(m[1]);
+    const tail = pkg.split('.').pop() || pkg;
+    return {
+      t: slugToTitle(tail),
+      pkg,
+      platform: 'rustore',
+      store: url,
+      period: periodLabel
+    };
+  }
+
+  return null;
+}
+
+async function loadGamesFromTxt() {
+  let txt;
+  try {
+    txt = await fs.readFile(SOURCE_TXT, 'utf8');
+  } catch (e) {
+    console.error(`\n✗ Не удалось прочитать файл:\n  ${SOURCE_TXT}\n`);
+    console.error('  Убедитесь, что my_games_portfolio.txt лежит рядом со скриптом.');
+    process.exit(1);
+  }
+
+  const lines = txt.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+
+  const games = [];
+  const seenPkg = new Set();
+  const periodsOrdered = [];
+  let periodLabel = null;
+
+  for (const line of lines) {
+    if (/^https?:\/\//i.test(line)) {
+      const g = classifyUrl(line, periodLabel);
+      if (!g) {
+        console.warn(`  ⚠ пропускаю незнакомый URL: ${line}`);
+        continue;
+      }
+      if (seenPkg.has(g.pkg)) continue;
+      seenPkg.add(g.pkg);
+      games.push(g);
+      continue;
+    }
+    if (/\d{4}/.test(line)) {
+      periodLabel = line;
+      if (!periodsOrdered.includes(line)) periodsOrdered.push(line);
+    }
+  }
+
+  return { games, periods: periodsOrdered };
+}
 
 /* =========================================================
    Файловые утилиты
@@ -70,23 +138,16 @@ const safeName = s => s.replace(/[^a-zA-Z0-9._-]+/g, '_');
 const MIME_EXT = {
   'image/jpeg': 'jpg', 'image/jpg': 'jpg', 'image/png': 'png',
   'image/webp': 'webp', 'image/gif': 'gif', 'image/avif': 'avif'
-  // image/svg+xml намеренно отсутствует — SVG не сохраняем
 };
 
 function guessExtFromUrl(url) {
   const clean = url.split('?')[0].split('#')[0];
   const m = clean.match(/\.([a-z0-9]{2,5})$/i);
   const ext = m ? m[1].toLowerCase() : null;
-  // svg в списке нет — этот формат отсеивается
   return ['jpg','jpeg','png','webp','gif','avif'].includes(ext)
     ? (ext === 'jpeg' ? 'jpg' : ext) : null;
 }
 
-/* Проверяем, что URL — это http(s)-ссылка на реальную растровую картинку.
-   Отсеивает:
-     • data: и blob: (lazy-load placeholder'ы)
-     • .svg / .svgz — обычно это иконки интерфейса или заглушки
-     • .ico — фавиконы */
 function isImageUrl(u) {
   if (!u || typeof u !== 'string') return false;
   if (!/^https?:\/\//i.test(u)) return false;
@@ -95,11 +156,6 @@ function isImageUrl(u) {
   return true;
 }
 
-/* Steam отдаёт скриншоты в разных размерах:
-     .../ss_abc123.600x338.jpg
-     .../ss_abc123.1920x1080.jpg
-     .../ss_abc123.jpg
-   Убираем суффикс с размером, чтобы получить максимально крупную версию. */
 function upscaleSteamShot(url) {
   return url.replace(/(\/ss_[a-f0-9]+)\.\d+x\d+(\.jpg)(\?.*)?$/i, '$1$2$3');
 }
@@ -122,11 +178,8 @@ async function downloadImage(url, destDir, baseName, referer) {
       }
     });
     if (!res.ok) return null;
-
     const ct = (res.headers.get('content-type') || '').split(';')[0].trim().toLowerCase();
-    // не сохраняем SVG — это мусор от placeholder'ов
     if (ct === 'image/svg+xml' || /\.svgz?(\?|#|$)/i.test(url)) return null;
-
     const buf = Buffer.from(await res.arrayBuffer());
     if (buf.length < 200) return null;
     const ext = MIME_EXT[ct] || guessExtFromUrl(url) || 'jpg';
@@ -137,23 +190,13 @@ async function downloadImage(url, destDir, baseName, referer) {
 }
 
 /* =========================================================
-   AppMagic: разворачивание прокси-URL
+   AppMagic
    ========================================================= */
-function unwrapAppMagicUrl(src) {
-  if (!src) return null;
-  const m = src.match(/[?&]uri=([^&]+)/);
-  if (m) return decodeURIComponent(m[1]);
-  return src;
-}
-
 function setGoogleSize(url, spec) {
   const base = url.replace(/=[a-z0-9-]+(\?.*)?$/i, '');
   return `${base}${spec}`;
 }
 
-/* =========================================================
-   AppMagic: извлечение иконки и скриншотов
-   ========================================================= */
 async function extractAppMagicMedia(page) {
   return await page.evaluate(() => {
     const unwrap = (src) => {
@@ -199,9 +242,6 @@ async function extractAppMagicMedia(page) {
   });
 }
 
-/* =========================================================
-   Подготовка страницы
-   ========================================================= */
 async function preparePage(page) {
   try { await page.waitForLoadState('networkidle', { timeout: 20000 }); } catch {}
   await page.waitForTimeout(1500);
@@ -245,9 +285,6 @@ async function preparePage(page) {
   await page.waitForTimeout(1200);
 }
 
-/* =========================================================
-   AppMagic
-   ========================================================= */
 async function parseAppMagic(page, url, debugKey) {
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45000 });
   await preparePage(page);
@@ -263,6 +300,14 @@ async function parseAppMagic(page, url, debugKey) {
       const el = document.querySelector(`meta[property="${prop}"], meta[name="${prop}"]`);
       return el?.getAttribute('content')?.trim() || null;
     };
+
+    let title = getMeta('og:title') || getMeta('twitter:title') || null;
+    if (!title) {
+      const h1 = document.querySelector('h1');
+      if (h1) title = h1.textContent.trim();
+    }
+    if (!title) title = document.title || null;
+
     let description = getMeta('og:description') || getMeta('description');
     if (!description) {
       const c = [...document.querySelectorAll('main p, main div')]
@@ -271,16 +316,14 @@ async function parseAppMagic(page, url, debugKey) {
       c.sort((a, b) => b.length - a.length);
       if (c[0]) description = c[0];
     }
-    const title = getMeta('og:title') || getMeta('twitter:title') || null;
+
     return { title, description };
   });
 
   const { icon, screenshots } = await extractAppMagicMedia(page);
 
-  const iconFinal = icon ? setGoogleSize(icon, '=w240-h480') : null;
-  const shotsFinal = screenshots
-    .filter(isImageUrl)
-    .map(u => setGoogleSize(u, '=w720'));
+  const iconFinal  = icon ? setGoogleSize(icon, '=w240-h480') : null;
+  const shotsFinal = screenshots.filter(isImageUrl).map(u => setGoogleSize(u, '=w720'));
 
   if (DEBUG && debugKey) {
     await fs.writeFile(
@@ -300,8 +343,7 @@ async function parseAppMagic(page, url, debugKey) {
 }
 
 /* =========================================================
-   Steam — собираем скриншоты в несколько проходов,
-   потому что в новом дизайне они лежат не там, где раньше
+   Steam
    ========================================================= */
 async function parseSteam(page, url, fallbackIcon, debugKey) {
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45000 });
@@ -325,12 +367,10 @@ async function parseSteam(page, url, fallbackIcon, debugKey) {
       if (!u) return;
       u = String(u).trim();
       if (!/^https?:\/\//i.test(u)) return;
-      // ищем все домены Steam CDN, включая shared.fastly и cdn.akamai
       if (!/steamstatic\.com\/.+\/ss_[a-f0-9]+(?:\.\d+x\d+)?\.jpg/i.test(u)) return;
       shots.add(u);
     };
 
-    // 1. Явные контейнеры карусели (старый и новый дизайн)
     const selectors = [
       '#highlight_strip img',
       '.highlight_screenshot',
@@ -352,8 +392,6 @@ async function parseSteam(page, url, fallbackIcon, debugKey) {
       });
     });
 
-    // 2. Проходим по всем <img> на странице — на случай,
-    //    если карусель отрендерилась нестандартно
     document.querySelectorAll('img').forEach(img => {
       addIfShot(img.currentSrc);
       addIfShot(img.getAttribute('src'));
@@ -363,15 +401,11 @@ async function parseSteam(page, url, fallbackIcon, debugKey) {
       ss.split(',').map(p => p.trim().split(/\s+/)[0]).forEach(addIfShot);
     });
 
-    // 3. Финальный фолбэк — ищем ссылки в исходном HTML.
-    //    Steam обычно подгружает галерею через inline-скрипты,
-    //    где полные URL уже лежат.
     const html = document.documentElement.outerHTML;
     const re = /https?:\/\/[^"'\s]+steamstatic\.com\/[^"'\s]+\/ss_[a-f0-9]+(?:\.\d+x\d+)?\.jpg(?:\?[^"'\s]*)?/gi;
     for (const m of html.matchAll(re)) shots.add(m[0]);
 
-    // Мета-информация
-    const dev = document.querySelector('#developers_list a, .dev_row .summary.column a')?.textContent.trim();
+    const dev  = document.querySelector('#developers_list a, .dev_row .summary.column a')?.textContent.trim();
     const date = document.querySelector('.release_date .date')?.textContent.trim();
     const tags = [...document.querySelectorAll('.glance_tags.popular_tags a')]
       .slice(0, 6).map(a => a.textContent.trim()).filter(Boolean).join(', ');
@@ -389,14 +423,8 @@ async function parseSteam(page, url, fallbackIcon, debugKey) {
     };
   });
 
-  // Обработка скриншотов на стороне Node:
-  //  • убираем суффикс размера
-  //  • отсеиваем svg и data:
-  //  • дедуплицируем и режем до 8 штук
   const cleaned = [...new Set(
-    (data.screenshots || [])
-      .filter(isImageUrl)
-      .map(upscaleSteamShot)
+    (data.screenshots || []).filter(isImageUrl).map(upscaleSteamShot)
   )].slice(0, 8);
 
   if (DEBUG && debugKey) {
@@ -407,11 +435,7 @@ async function parseSteam(page, url, fallbackIcon, debugKey) {
     );
   }
 
-  return {
-    ...data,
-    icon: data.icon || fallbackIcon || null,
-    screenshots: cleaned,
-  };
+  return { ...data, icon: data.icon || fallbackIcon || null, screenshots: cleaned };
 }
 
 /* =========================================================
@@ -442,11 +466,7 @@ async function parseRuStore(page, url) {
     };
   });
 
-  // Финальная фильтрация: только http(s)-ссылки без svg
-  const cleaned = [...new Set(
-    (data.screenshots || []).filter(isImageUrl)
-  )].slice(0, 6);
-
+  const cleaned = [...new Set((data.screenshots || []).filter(isImageUrl))].slice(0, 6);
   return { ...data, screenshots: cleaned };
 }
 
@@ -468,7 +488,7 @@ async function scrape(page, g) {
 }
 
 /* =========================================================
-   Скачивание с фолбэком через AppMagic-прокси
+   Скачивание
    ========================================================= */
 async function downloadAssets(g, raw) {
   const dir = path.join(ASSETS_DIR, safeName(g.pkg));
@@ -508,10 +528,8 @@ async function downloadAssets(g, raw) {
 }
 
 /* =========================================================
-   НОРМАЛИЗАЦИЯ И ОЧИСТКА НАЗВАНИЯ
+   Очистка названия
    ========================================================= */
-
-/* 1. Декодируем HTML-сущности и юникодные пробелы */
 function decodeEntities(s) {
   if (!s) return s;
   const map = { amp:'&', lt:'<', gt:'>', quot:'"', apos:"'", nbsp:' ', '#39':"'" };
@@ -524,32 +542,32 @@ function decodeEntities(s) {
     .trim();
 }
 
-/* 2. Известные «хвосты» — отрезаем одним regex, в любом порядке */
 const TITLE_SUFFIXES = [
+  /\s*[-–—|·:]\s*Data\s+Overview\s*$/i,
+  /\s*[-–—|·:]\s*Overview\s*$/i,
+  /\s*[-–—|·:]\s*App\s*Magic\b.*$/i,
+  /\s*[-–—|·:]\s*AppMagic\b.*$/i,
   /\s*[-–—|·:]\s*Apps? on Google Play\s*$/i,
   /\s*[-–—|·:]\s*Google Play\s*$/i,
   /\s+on\s+Steam\s*$/i,
   /\s*[-–—|·:]\s*Steam\s*$/i,
   /\s*[-–—|·:]\s*RuStore\s*$/i,
   /\s*[-–—|·:]\s*RuStore[:\s].*$/i,
-  /\s*[-–—|·:]\s*AppMagic[^a-zA-Zа-яА-Я]*$/i,
-  /\s*\|\s*AppMagic.*$/i,
   /\s*[-–—|·]\s*$/,
   /^\s*[-–—|·:]\s*/,
 ];
 
-/* 3. Основная функция очистки */
+const TITLE_BLACKLIST = /^(app\s*magic|appmagic|data\s+overview|overview|google\s+play|steam|rustore|app|приложение|игра)$/i;
+const TITLE_REJECT_SUBSTR = /\bdata\s+overview\b|\bappmagic\b/i;
+
 function cleanTitle(rawTitle) {
   if (!rawTitle) return null;
-
   let t = decodeEntities(rawTitle);
 
   let prev;
   do {
     prev = t;
-    for (const re of TITLE_SUFFIXES) {
-      t = t.replace(re, '');
-    }
+    for (const re of TITLE_SUFFIXES) t = t.replace(re, '');
     t = t.trim();
   } while (t !== prev && t.length > 0);
 
@@ -559,13 +577,14 @@ function cleanTitle(rawTitle) {
   if (m) t = m[1].trim();
 
   if (!t || t.length < 2) return null;
+  if (TITLE_BLACKLIST.test(t)) return null;
+  if (TITLE_REJECT_SUBSTR.test(t)) return null;
 
   if (t.length > 120) {
     const cut = t.split(/\s*[-–—|]\s*/)[0].trim();
     if (cut && cut.length >= 2 && cut.length <= 120) return cut;
     return t.slice(0, 120).trim();
   }
-
   return t;
 }
 
@@ -573,6 +592,13 @@ function cleanTitle(rawTitle) {
    Публичный API
    ========================================================= */
 export async function parseAll({ onProgress, headless = true } = {}) {
+  const { games: GAMES, periods } = await loadGamesFromTxt();
+
+  if (!GAMES.length) {
+    console.error('\n✗ В файле не нашлось ни одной ссылки.\n');
+    process.exit(1);
+  }
+
   await fs.mkdir(ASSETS_DIR, { recursive: true });
   if (DEBUG) await fs.mkdir(DEBUG_DIR, { recursive: true });
 
@@ -596,8 +622,6 @@ export async function parseAll({ onProgress, headless = true } = {}) {
     let entry;
     try {
       const raw = await scrape(page, g);
-
-      // ★ Применяем очистку названия
       const cleanedTitle = cleanTitle(raw.title) || g.t;
 
       entry = await downloadAssets(g, { ...raw, title: cleanedTitle });
@@ -606,6 +630,7 @@ export async function parseAll({ onProgress, headless = true } = {}) {
         store: g.store,
         appmagic: g.appmagic || null,
         platform: g.platform,
+        period: g.period || null,
         loaded: !!(cleanedTitle || entry.icon),
         parsedAt: Date.now()
       };
@@ -619,11 +644,11 @@ export async function parseAll({ onProgress, headless = true } = {}) {
   }
 
   await browser.close();
-  return { generatedAt: Date.now(), count: GAMES.length, games };
+  return { generatedAt: Date.now(), count: GAMES.length, periods, games };
 }
 
 /* =========================================================
-   Запись результатов: JSON + JS
+   Запись
    ========================================================= */
 async function writeOutputs(data) {
   await fs.writeFile(OUT_FILE, JSON.stringify(data, null, 2), 'utf8');
@@ -651,9 +676,19 @@ const isMain = process.argv[1] &&
 
 if (isMain) {
   const showBrowser = process.argv.includes('--show');
-  console.log(`Парсер запущен. Игр: ${GAMES.length}. Браузер: ${showBrowser ? 'видимый' : 'headless'}`);
-  console.log(`Картинки: ${path.relative(process.cwd(), ASSETS_DIR)}/`);
-  if (DEBUG) console.log(`Debug: ${path.relative(process.cwd(), DEBUG_DIR)}/`);
+
+  const preview = await loadGamesFromTxt();
+  const byPlatform = preview.games.reduce((a, g) => {
+    a[g.platform] = (a[g.platform] || 0) + 1;
+    return a;
+  }, {});
+
+  console.log(`Источник: ${path.relative(process.cwd(), SOURCE_TXT)}`);
+  console.log(`Игр найдено: ${preview.games.length}`);
+  console.log(`Периодов в файле: ${preview.periods.length}`);
+  console.log('По платформам:');
+  Object.entries(byPlatform).forEach(([k, v]) => console.log(`  • ${k}: ${v}`));
+  console.log(`Браузер: ${showBrowser ? 'видимый' : 'headless'}`);
   console.log('');
 
   const started = Date.now();
