@@ -1,6 +1,6 @@
 {
-  "generatedAt": 1789123964709,
-  "count": 27,
+  "generatedAt": 1789130403837,
+  "count": 28,
   "games": {
     "com.exorid.ClashOfMonsters": {
       "title": "Clash Of Monsters - Data Overview",
@@ -21,7 +21,7 @@
       "appmagic": "https://appmagic.rocks/google-play/clash-of-monsters/com.exorid.ClashOfMonsters",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123665548
+      "parsedAt": 1789130014479
     },
     "com.exorid.Catchtheenemysflag": {
       "title": "Сatch the Enemy's Flag - Data Overview",
@@ -40,7 +40,7 @@
       "appmagic": "https://appmagic.rocks/google-play/satch-the-enemy-s-flag/com.exorid.Catchtheenemysflag",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123674986
+      "parsedAt": 1789130025995
     },
     "stickmens.coloring.gates.runner": {
       "title": "Stickmans Color Race - Data Overview",
@@ -60,7 +60,7 @@
       "appmagic": "https://appmagic.rocks/google-play/stickmans-color-race/stickmens.coloring.gates.runner",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123684598
+      "parsedAt": 1789130037694
     },
     "com.exorid.SlingDucks": {
       "title": "Sling Ducks - Data Overview",
@@ -78,7 +78,7 @@
       "appmagic": "https://appmagic.rocks/google-play/sling-ducks/com.exorid.SlingDucks",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123695958
+      "parsedAt": 1789130050109
     },
     "com.exorid.MyFoodFarm": {
       "title": "My Food Farm - Data Overview",
@@ -96,7 +96,7 @@
       "appmagic": "https://appmagic.rocks/google-play/my-food-farm/com.exorid.MyFoodFarm",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123705360
+      "parsedAt": 1789130060729
     },
     "com.exorid.Peekaboo3D": {
       "title": "Peekaboo Rush - Data Overview",
@@ -113,7 +113,7 @@
       "appmagic": "https://appmagic.rocks/google-play/peekaboo-rush/com.exorid.Peekaboo3D",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123714430
+      "parsedAt": 1789130070688
     },
     "com.exorid.PushIslands": {
       "title": "Push Islands - Data Overview",
@@ -132,7 +132,7 @@
       "appmagic": "https://appmagic.rocks/google-play/push-islands/com.exorid.PushIslands",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123724109
+      "parsedAt": 1789130082106
     },
     "com.exorid.PushColor": {
       "title": "Push Color - Data Overview",
@@ -150,7 +150,7 @@
       "appmagic": "https://appmagic.rocks/google-play/push-color/com.exorid.PushColor",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123733336
+      "parsedAt": 1789130093234
     },
     "com.exorid.ConquestMasters": {
       "title": "Conquest Masters - Data Overview",
@@ -168,7 +168,7 @@
       "appmagic": "https://appmagic.rocks/google-play/conquest-masters/com.exorid.ConquestMasters",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123742928
+      "parsedAt": 1789130103915
     },
     "com.exorid.LordsLands": {
       "title": "Lord's Land - Data Overview",
@@ -186,7 +186,7 @@
       "appmagic": "https://appmagic.rocks/google-play/lord-s-land/com.exorid.LordsLands",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123752461
+      "parsedAt": 1789130114639
     },
     "com.exorid.TrashFactory": {
       "title": "Trash Factory - Data Overview",
@@ -204,7 +204,7 @@
       "appmagic": "https://appmagic.rocks/google-play/trash-factory/com.exorid.TrashFactory",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123762527
+      "parsedAt": 1789130126715
     },
     "com.exorid.DinoEvo": {
       "title": "Dino Evo - Data Overview",
@@ -224,7 +224,7 @@
       "appmagic": "https://appmagic.rocks/google-play/dino-evo/com.exorid.DinoEvo",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123773119
+      "parsedAt": 1789130140997
     },
     "com.exorid.IslandInvaders3D": {
       "title": "Island Invaders 3D - Data Overview",
@@ -243,7 +243,7 @@
       "appmagic": "https://appmagic.rocks/google-play/island-invaders-3d/com.exorid.IslandInvaders3D",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123783180
+      "parsedAt": 1789130152510
     },
     "com.exorid.PsychoClinic": {
       "title": "Psycho Clinic - Data Overview",
@@ -262,7 +262,7 @@
       "appmagic": "https://appmagic.rocks/google-play/psycho-clinic/com.exorid.PsychoClinic",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123793181
+      "parsedAt": 1789130163856
     },
     "com.exorid.BalloonHitMaster": {
       "title": "Balloon Hit Master - Data Overview",
@@ -282,24 +282,19 @@
       "appmagic": "https://appmagic.rocks/google-play/balloon-hit-master/com.exorid.BalloonHitMaster",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123803018
+      "parsedAt": 1789130175450
     },
     "com.exorid.GrappleUP": {
-      "title": "Grapple UP - Data Overview",
+      "title": "AppMagic",
       "description": "AppMagic is a service for mobile app market intelligence designed for quick and powerful market research. It offers unique features, such as the high-precision classification of app genres, comparison of multiple apps and publishers, detector of successful soft launches, evaluation of the monetary impact of featuring, and many more.",
-      "icon": "assets/com.exorid.GrappleUP/icon.png",
-      "screenshots": [
-        "assets/com.exorid.GrappleUP/shot-1.jpg",
-        "assets/com.exorid.GrappleUP/shot-2.jpg",
-        "assets/com.exorid.GrappleUP/shot-3.jpg",
-        "assets/com.exorid.GrappleUP/shot-4.jpg"
-      ],
-      "_found": 4,
+      "icon": null,
+      "screenshots": [],
+      "_found": 0,
       "store": "https://play.google.com/store/apps/details?id=com.exorid.GrappleUP",
-      "appmagic": "https://appmagic.rocks/google-play/grapple-up/com.exorid.GrappleUP",
+      "appmagic": "https://appmagic.rocks/google-play/grapple-up/com.exorid.GrappleUp",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123813197
+      "parsedAt": 1789130188018
     },
     "com.exorid.TowersOnPlains": {
       "title": "Towers On Plains - Data Overview",
@@ -315,7 +310,7 @@
       "appmagic": "https://appmagic.rocks/google-play/towers-on-plains/com.exorid.TowersOnPlains",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123822278
+      "parsedAt": 1789130197899
     },
     "com.exorid.CubeFlip": {
       "title": "Cube Flip - Data Overview",
@@ -332,7 +327,7 @@
       "appmagic": "https://appmagic.rocks/google-play/cube-flip/com.exorid.CubeFlip",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123831762
+      "parsedAt": 1789130208574
     },
     "com.exorid.KnightsClash": {
       "title": "Knights Clas‪h‬ - Data Overview",
@@ -352,7 +347,7 @@
       "appmagic": "https://appmagic.rocks/google-play/knights-clash/com.exorid.KnightsClash",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123841624
+      "parsedAt": 1789130220865
     },
     "com.exorid.Prison": {
       "title": "Prison Maze - Data Overview",
@@ -369,7 +364,7 @@
       "appmagic": "https://appmagic.rocks/google-play/prison-maze/com.exorid.Prison",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123850598
+      "parsedAt": 1789130231036
     },
     "com.exorid.TowerRaid": {
       "title": "Tower Raid - Data Overview",
@@ -386,7 +381,7 @@
       "appmagic": "https://appmagic.rocks/google-play/tower-raid/com.exorid.TowerRaid",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123859560
+      "parsedAt": 1789130241058
     },
     "com.exorid.TwistedRoads": {
       "title": "Twisted Roads - Data Overview",
@@ -404,7 +399,7 @@
       "appmagic": "https://appmagic.rocks/google-play/twisted-roads/com.exorid.TwistedRoads",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123869106
+      "parsedAt": 1789130251427
     },
     "com.exorid.FarmCorp": {
       "title": "Farm Corp - Data Overview",
@@ -422,7 +417,7 @@
       "appmagic": "https://appmagic.rocks/google-play/farm-corp/com.exorid.FarmCorp",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123879989
+      "parsedAt": 1789130263229
     },
     "com.exorid.MyDinoRanch": {
       "title": "My DinoRanch - Data Overview",
@@ -438,13 +433,22 @@
       "appmagic": "https://appmagic.rocks/google-play/my-dinoranch/com.exorid.MyDinoRanch",
       "platform": "googleplay",
       "loaded": true,
-      "parsedAt": 1789123889571
+      "parsedAt": 1789130273191
     },
     "app/3395290": {
       "title": "SUMO TATAMI в Steam",
       "description": "Устройте кавардак в многопользовательских аркадных сражениях Sumo Tatami 🎮🏃‍♂️🏁 Беги, катись, cовершай ракетные прыжки в игре со множеством игровых режимов. Только ловкость, смекалка и удача сделают тебя ёкодзуной!",
       "icon": "assets/app_3395290/icon.jpg",
-      "screenshots": [],
+      "screenshots": [
+        "assets/app_3395290/shot-1.jpg",
+        "assets/app_3395290/shot-2.jpg",
+        "assets/app_3395290/shot-3.jpg",
+        "assets/app_3395290/shot-4.jpg",
+        "assets/app_3395290/shot-5.jpg",
+        "assets/app_3395290/shot-6.jpg",
+        "assets/app_3395290/shot-7.jpg",
+        "assets/app_3395290/shot-8.jpg"
+      ],
       "extra": {
         "Разработчик": "Crazy Barbarian Games",
         "Дата выхода": "4 квартал 2026",
@@ -454,31 +458,55 @@
       "appmagic": null,
       "platform": "steam",
       "loaded": true,
-      "parsedAt": 1789123908984
+      "parsedAt": 1789130301570
+    },
+    "app/3660360": {
+      "title": "Deadly Deals в Steam",
+      "description": "Ты – торговец в антикварной лавке. Покупай, продавай, развивайся. Всё просто. Еще попытайся не умереть. Небольшой нюанс выгодного места, про который обычно не говорят риелторы…",
+      "icon": "assets/app_3660360/icon.jpg",
+      "screenshots": [
+        "assets/app_3660360/shot-1.jpg",
+        "assets/app_3660360/shot-2.jpg",
+        "assets/app_3660360/shot-3.jpg",
+        "assets/app_3660360/shot-4.jpg",
+        "assets/app_3660360/shot-5.jpg",
+        "assets/app_3660360/shot-6.jpg",
+        "assets/app_3660360/shot-7.jpg",
+        "assets/app_3660360/shot-8.jpg"
+      ],
+      "extra": {
+        "Разработчик": "La Luna Noire",
+        "Дата выхода": "2026",
+        "Теги": "Хоррор, Симулятор, Мрачная, Менеджмент, Торговля, Инди"
+      },
+      "store": "https://store.steampowered.com/app/3660360/Deadly_Deals/",
+      "appmagic": null,
+      "platform": "steam",
+      "loaded": true,
+      "parsedAt": 1789130346584
     },
     "com.Playgineers.CarOutJam": {
       "title": "Car Out Jam",
       "loaded": false,
       "error": "page.evaluate: Execution context was destroyed, most likely because of a navigation.",
-      "parsedAt": 1789123933879
+      "parsedAt": 1789130372097
     },
     "com.playgineers.boatescape": {
       "title": "Побег на лодках! в каталоге RuStore",
       "description": "🎮 Побег на лодках! — Побег на лодках: пробки и пассажиры по цветам. 🚀 Скачайте бесплатно на Android смартфон и TV! До 1 тыс скачиваний, последнее обновление 0.2.3.2. Без вирусов, 0+.",
       "icon": "assets/com.playgineers.boatescape/icon.webp",
       "screenshots": [
-        "assets/com.playgineers.boatescape/shot-1.svg",
+        "assets/com.playgineers.boatescape/shot-1.webp",
         "assets/com.playgineers.boatescape/shot-2.webp",
         "assets/com.playgineers.boatescape/shot-3.webp",
         "assets/com.playgineers.boatescape/shot-4.webp",
-        "assets/com.playgineers.boatescape/shot-5.webp",
-        "assets/com.playgineers.boatescape/shot-6.webp"
+        "assets/com.playgineers.boatescape/shot-5.webp"
       ],
       "store": "https://www.rustore.ru/catalog/app/com.playgineers.boatescape",
       "appmagic": null,
       "platform": "rustore",
       "loaded": true,
-      "parsedAt": 1789123963400
+      "parsedAt": 1789130401986
     }
   }
 }

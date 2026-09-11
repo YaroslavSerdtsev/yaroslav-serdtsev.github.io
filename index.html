@@ -55,15 +55,31 @@
       border-bottom:1px solid var(--border);
     }
     .topbar__in{display:flex;align-items:center;gap:16px;height:54px}
-    .brand{font-weight:600;font-size:12.5px;letter-spacing:.02em;white-space:nowrap}
+
+    /* Логотип-кнопка — без якорной ссылки */
+    .brand{
+      font-weight:600;font-size:12.5px;letter-spacing:.02em;white-space:nowrap;
+      font-family:var(--font);
+      background:none;border:0;padding:0;color:inherit;cursor:pointer;
+      transition:opacity .2s;
+    }
+    .brand:hover{opacity:.85}
     .brand span{color:var(--accent)}
-    .nav{margin-left:auto;display:flex;gap:20px;font-size:12.5px;color:var(--muted)}
-    .nav a{transition:color .2s}
-    .nav a:hover{color:var(--text)}
+
+    /* Навигация — кнопки вместо ссылок */
+    .nav{margin-left:auto;display:flex;gap:20px;font-size:12.5px}
+    .nav button{
+      font:inherit;font-family:var(--font);font-size:12.5px;
+      background:none;border:0;padding:0;cursor:pointer;
+      color:var(--muted);
+      transition:color .2s;
+    }
+    .nav button:hover{color:var(--text)}
+    @media(max-width:720px){.nav{display:none}}
+
     .theme-btn{width:30px;height:30px;flex:0 0 auto;display:grid;place-items:center;border-radius:999px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:.2s}
     .theme-btn:hover{color:var(--text);border-color:var(--border-hi)}
     .theme-btn svg{width:13px;height:13px}
-    @media(max-width:720px){.nav{display:none}}
 
     /* Hero */
     .hero{padding:var(--hero-pad) 0}
@@ -114,86 +130,36 @@
     .filter.is-active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:500}
     .filter em{font-style:normal;opacity:.55;margin-left:4px;font-size:10.5px}
 
-    /* ═══ Periods — вертикальный таймлайн ═══ */
-    .timeline{
-      position:relative;
-      padding-left:28px;
-    }
+    /* Periods — вертикальный таймлайн */
+    .timeline{position:relative;padding-left:28px}
     .timeline::before{
-      content:"";
-      position:absolute;
-      left:4px;
-      top:8px;
-      bottom:8px;
-      width:1px;
+      content:"";position:absolute;left:4px;top:8px;bottom:8px;width:1px;
       background:linear-gradient(to bottom,
-      var(--accent) 0%,
-      var(--border) 8%,
-      var(--border) 92%,
-      transparent 100%);
+      var(--accent) 0%, var(--border) 8%, var(--border) 92%, transparent 100%);
       opacity:.6;
     }
-
-    .period{
-      position:relative;
-      padding:0 0 40px;
-    }
+    .period{position:relative;padding:0 0 40px}
     .period:last-child{padding-bottom:0}
     .period[hidden]{display:none}
-
     .period::before{
-      content:"";
-      position:absolute;
-      left:-28px;
-      top:5px;
-      width:9px;
-      height:9px;
-      border-radius:999px;
-      background:var(--accent);
-      box-shadow:0 0 0 4px var(--glow);
-      z-index:1;
+      content:"";position:absolute;left:-28px;top:5px;width:9px;height:9px;
+      border-radius:999px;background:var(--accent);
+      box-shadow:0 0 0 4px var(--glow);z-index:1;
     }
-
-    .period__head{
-      display:block;
-      margin-bottom:16px;
-    }
-
+    .period__head{display:block;margin-bottom:16px}
     .period__time{
-      display:block;
-      position:static;
-      padding:0;
-      margin:0 0 5px;
-      font-size:11.5px;
-      letter-spacing:.05em;
-      color:var(--accent);
-      white-space:nowrap;
+      display:block;position:static;padding:0;margin:0 0 5px;
+      font-size:11.5px;letter-spacing:.05em;color:var(--accent);white-space:nowrap;
     }
     .period__time::before{display:none}
-
-    .period__info h3{
-      margin:0 0 4px;
-      font-size:14.5px;
-      font-weight:600;
-      letter-spacing:-.01em;
-      line-height:1.3;
-    }
-    .period__info p{
-      margin:0;
-      font-size:12.5px;
-      color:var(--muted);
-      max-width:62ch;
-    }
-
+    .period__info h3{margin:0 0 4px;font-size:14.5px;font-weight:600;letter-spacing:-.01em;line-height:1.3}
+    .period__info h3 a{border-bottom:1px dotted var(--border-hi);transition:border-color .2s}
+    .period__info h3 a:hover{border-color:var(--accent);color:var(--accent)}
+    .period__info p{margin:0;font-size:12.5px;color:var(--muted);max-width:62ch}
     .period__count{
-      display:inline-block;
-      font-size:10.5px;
-      color:var(--muted);
-      padding:4px 9px;
-      border:1px solid var(--border);
-      border-radius:999px;
-      margin-top:10px;
-      white-space:nowrap;
+      display:inline-block;font-size:10.5px;color:var(--muted);
+      padding:4px 9px;border:1px solid var(--border);border-radius:999px;
+      margin-top:10px;white-space:nowrap;
     }
 
     /* Cards grid */
@@ -223,54 +189,23 @@
     .modal__close{
       position:absolute;top:12px;right:12px;z-index:5;
       width:30px;height:30px;display:grid;place-items:center;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:var(--bg);
-      color:var(--muted);
-      cursor:pointer;
-      transition:.2s ease;
+      border-radius:999px;border:1px solid var(--border);
+      background:var(--bg);color:var(--muted);cursor:pointer;transition:.2s ease;
     }
-    .modal__close:hover{
-      color:var(--text);
-      border-color:var(--border-hi);
-      background:var(--bg-soft);
-      transform:rotate(90deg);
-    }
+    .modal__close:hover{color:var(--text);border-color:var(--border-hi);background:var(--bg-soft);transform:rotate(90deg)}
     .modal__close svg{width:12px;height:12px}
 
     .modal__head{
-      display:grid;
-      grid-template-columns:88px 1fr;
-      gap:16px;
-      align-items:start;
-      padding:20px 22px 16px;
-      border-bottom:1px solid var(--border);
+      display:grid;grid-template-columns:88px 1fr;gap:16px;align-items:start;
+      padding:20px 22px 16px;border-bottom:1px solid var(--border);
     }
     .modal__icon{
-      position:relative;
-      width:88px;height:88px;
-      border-radius:16px;
-      overflow:hidden;
-      border:1px solid var(--border);
-      background:#0c0e11;
-      flex:0 0 auto;
+      position:relative;width:88px;height:88px;border-radius:16px;overflow:hidden;
+      border:1px solid var(--border);background:#0c0e11;flex:0 0 auto;
     }
-    .modal__icon img{
-      width:100%;height:100%;
-      object-fit:cover;
-      position:relative;z-index:1;
-    }
-    .modal__icon .thumb__ph{
-      position:absolute;inset:0;
-      display:grid;place-items:center;
-      font-size:22px;font-weight:500;letter-spacing:.06em;
-      color:rgba(255,255,255,.34);
-    }
-    .modal__icon .thumb__ph::after{
-      content:"";position:absolute;inset:0;
-      background-image:radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
-      background-size:9px 9px;
-    }
+    .modal__icon img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1}
+    .modal__icon .thumb__ph{position:absolute;inset:0;display:grid;place-items:center;font-size:22px;font-weight:500;letter-spacing:.06em;color:rgba(255,255,255,.34)}
+    .modal__icon .thumb__ph::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);background-size:9px 9px}
     .modal__head-info{min-width:0}
 
     .modal__body{padding:18px 22px 24px}
@@ -281,22 +216,13 @@
 
     /* Скриншоты в модалке */
     .modal__shots{
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
-      gap:8px;
-      margin-bottom:0;
-      align-items:start;
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+      gap:8px;margin-bottom:0;align-items:start;
     }
-    .modal__shots button{
-      display:block;width:100%;padding:0;border:0;background:transparent;
-      cursor:zoom-in;line-height:0;font:inherit;
-    }
+    .modal__shots button{display:block;width:100%;padding:0;border:0;background:transparent;cursor:zoom-in;line-height:0;font:inherit}
     .modal__shots img{
-      width:100%;height:auto;
-      border-radius:8px;
-      border:1px solid var(--border);
-      background:var(--bg);
-      cursor:zoom-in;
+      width:100%;height:auto;border-radius:8px;border:1px solid var(--border);
+      background:var(--bg);cursor:zoom-in;
       transition:transform .2s ease,border-color .2s ease;
     }
     .modal__shots img:hover{transform:scale(1.02);border-color:var(--accent)}
@@ -305,74 +231,48 @@
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
     @keyframes modalIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
 
-    /* ═══ Lightbox: вертикальная лента скриншотов ═══ */
+    /* Lightbox: вертикальная лента скриншотов */
     .lightbox{
-      position:fixed;inset:0;z-index:200;
-      display:none;
+      position:fixed;inset:0;z-index:200;display:none;
       background:color-mix(in srgb, var(--bg) 92%, transparent);
       backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
     }
     .lightbox.is-open{display:block;animation:fadeIn .22s ease}
-
     .lightbox__close{
       position:fixed;top:16px;right:16px;z-index:3;
       width:40px;height:40px;display:grid;place-items:center;
-      border-radius:999px;
-      border:1px solid var(--border-hi);
-      background:var(--bg-soft);
-      color:var(--text);
-      cursor:pointer;
-      transition:.2s ease;
+      border-radius:999px;border:1px solid var(--border-hi);
+      background:var(--bg-soft);color:var(--text);cursor:pointer;transition:.2s ease;
       box-shadow:0 10px 28px -12px rgba(0,0,0,.7);
     }
-    .lightbox__close:hover{
-      background:var(--accent);
-      color:var(--accent-ink);
-      border-color:var(--accent);
-      transform:rotate(90deg);
-    }
+    .lightbox__close:hover{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);transform:rotate(90deg)}
     .lightbox__close svg{width:14px;height:14px}
 
     .lightbox__scroll{
-      width:100%;
-      height:100%;
-      overflow-y:auto;
-      overflow-x:hidden;
+      width:100%;height:100%;
+      overflow-y:auto;overflow-x:hidden;
       padding:32px 24px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:16px;
-      overscroll-behavior:contain;
-      -webkit-overflow-scrolling:touch;
-      scroll-behavior:smooth;
+      display:flex;flex-direction:column;align-items:center;gap:16px;
+      overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;
     }
     .lightbox__scroll::-webkit-scrollbar{width:8px}
     .lightbox__scroll::-webkit-scrollbar-thumb{background:var(--border-hi);border-radius:8px}
     .lightbox__scroll::-webkit-scrollbar-track{background:transparent}
 
-    /* Каждый скриншот целиком умещается в экран */
     .lightbox__scroll img{
       max-width:min(900px, 92vw);
       max-height:calc(100vh - 128px);
-      width:auto;
-      height:auto;
+      width:auto;height:auto;
       object-fit:contain;
-      border-radius:12px;
-      border:1px solid var(--border);
+      border-radius:12px;border:1px solid var(--border);
       background:var(--bg-soft);
       box-shadow:0 30px 70px -30px rgba(0,0,0,.9);
-      user-select:none;
-      -webkit-user-drag:none;
+      user-select:none;-webkit-user-drag:none;
     }
 
     @media(max-width:640px){
       .lightbox__scroll{padding:44px 10px;gap:10px}
-      .lightbox__scroll img{
-        max-width:100%;
-        max-height:calc(100vh - 100px);
-        border-radius:8px;
-      }
+      .lightbox__scroll img{max-width:100%;max-height:calc(100vh - 100px);border-radius:8px}
       .lightbox__close{top:10px;right:10px;width:36px;height:36px}
     }
 
@@ -402,8 +302,7 @@
 
       .hero{padding:20px 0 28px}
       .hero__grid{
-        display:grid;
-        grid-template-columns:auto 1fr;
+        display:grid;grid-template-columns:auto 1fr;
         grid-template-areas:
           "photo eyebrow"
           "photo title"
@@ -455,11 +354,7 @@
       .modal{padding:0}
       .modal__panel{max-width:none;height:100%;max-height:100%;border-radius:0;border:none}
       .modal__close{top:10px;right:10px;width:30px;height:30px}
-      .modal__head{
-        grid-template-columns:64px 1fr;
-        gap:12px;
-        padding:16px 16px 14px;
-      }
+      .modal__head{grid-template-columns:64px 1fr;gap:12px;padding:16px 16px 14px}
       .modal__icon{width:64px;height:64px;border-radius:12px}
       .modal__icon .thumb__ph{font-size:18px}
       .modal__body{padding:14px 16px 20px}
@@ -491,10 +386,12 @@
 
 <header class="topbar">
   <div class="wrap topbar__in">
-    <a class="brand" href="#top">Ярослав<span> </span>Сердцев</a>
+    <button class="brand" type="button" data-scroll="top" aria-label="Наверх">
+      Ярослав<span> </span>Сердцев
+    </button>
     <nav class="nav">
-      <a href="#about">Обо мне</a>
-      <a href="#work">Опыт и проекты</a>
+      <button type="button" data-scroll="about">Обо мне</button>
+      <button type="button" data-scroll="work">Опыт и проекты</button>
     </nav>
     <button class="theme-btn" id="themeToggle" aria-label="Переключить тему">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
@@ -584,7 +481,6 @@
   </div>
 </div>
 
-<!-- ═══ Лайтбокс: вертикальная лента скриншотов ═══ -->
 <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Просмотр скриншотов">
   <button class="lightbox__close" data-lb-close aria-label="Закрыть">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -597,6 +493,8 @@
   </div>
 </div>
 
+<!-- ▼ Команды — можно править отдельно, не трогая index.html -->
+<script src="teams-data.js"></script>
 <script src="games-data.js"></script>
 
 <script>
@@ -604,9 +502,10 @@
      1. ПЕРИОДЫ
      ========================================================= */
   const PERIODS = [
-    { id: 'exorid',  label: 'Ноябрь 2020 — Октябрь 2022', role: 'Unity Developer', company: 'LuckyGames',           note: 'Разработка и поддержка мобильных игр: геймплей, UI, интеграции SDK, оптимизация, публикации в Google Play.' },
-    { id: 'steam',   label: 'Октябрь 2023 — Октябрь 2024', role: 'Unity Developer', company: 'CrazyBarbarianGames', note: 'Разработка игры в Steam.' },
-    { id: 'rustore', label: 'Ноябрь 2024 — Август 2026',   role: 'Unity Developer', company: 'Playgineers',         note: 'Разработка игр для RuStore.' }
+    { id: 'exorid',  label: 'Ноябрь 2020 — Октябрь 2022', teams: ['luckygames'],     note: 'Разработка и поддержка мобильных игр: геймплей, UI, интеграции SDK, оптимизация, публикации в Google Play.' },
+    { id: 'steam',   label: 'Октябрь 2023 — Октябрь 2024', teams: ['crazybarbarian'], note: 'Разработка и релиз игры в Steam.' },
+    { id: 'deadly',  label: 'Декабрь 2024 — Март 2025',   teams: ['deadlydeals'],    note: 'Разработка и релиз игры в Steam.' },
+    { id: 'rustore', label: 'Ноябрь 2024 — Август 2026',   teams: ['playgineers'],    note: 'Разработка игр для RuStore.' }
   ];
 
   /* =========================================================
@@ -619,33 +518,36 @@
   };
 
   const STUB = [
-    { t:'Clash of Monsters',        p:'com.exorid.ClashOfMonsters',       k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.ClashOfMonsters',       am:'https://appmagic.rocks/google-play/clash-of-monsters/com.exorid.ClashOfMonsters' },
-    { t:'Catch the Enemy\'s Flag',  p:'com.exorid.Catchtheenemysflag',    k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.Catchtheenemysflag',    am:'https://appmagic.rocks/google-play/satch-the-enemy-s-flag/com.exorid.Catchtheenemysflag' },
-    { t:'Stickman\'s Color Race',   p:'stickmens.coloring.gates.runner',  k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=stickmens.coloring.gates.runner',  am:'https://appmagic.rocks/google-play/stickmans-color-race/stickmens.coloring.gates.runner' },
-    { t:'Sling Ducks',              p:'com.exorid.SlingDucks',            k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.SlingDucks',            am:'https://appmagic.rocks/google-play/sling-ducks/com.exorid.SlingDucks' },
-    { t:'My Food Farm',             p:'com.exorid.MyFoodFarm',            k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.MyFoodFarm',            am:'https://appmagic.rocks/google-play/my-food-farm/com.exorid.MyFoodFarm' },
-    { t:'Peekaboo Rush',            p:'com.exorid.Peekaboo3D',            k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.Peekaboo3D',            am:'https://appmagic.rocks/google-play/peekaboo-rush/com.exorid.Peekaboo3D' },
-    { t:'Push Islands',             p:'com.exorid.PushIslands',           k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.PushIslands',           am:'https://appmagic.rocks/google-play/push-islands/com.exorid.PushIslands' },
-    { t:'Push Color',               p:'com.exorid.PushColor',             k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.PushColor',             am:'https://appmagic.rocks/google-play/push-color/com.exorid.PushColor' },
-    { t:'Conquest Masters',         p:'com.exorid.ConquestMasters',       k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.ConquestMasters',       am:'https://appmagic.rocks/google-play/conquest-masters/com.exorid.ConquestMasters' },
-    { t:'Lord\'s Land',             p:'com.exorid.LordsLands',            k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.LordsLands',            am:'https://appmagic.rocks/google-play/lord-s-land/com.exorid.LordsLands' },
-    { t:'Trash Factory',            p:'com.exorid.TrashFactory',          k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.TrashFactory',          am:'https://appmagic.rocks/google-play/trash-factory/com.exorid.TrashFactory' },
-    { t:'Dino Evo',                 p:'com.exorid.DinoEvo',               k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.DinoEvo',               am:'https://appmagic.rocks/google-play/dino-evo/com.exorid.DinoEvo' },
-    { t:'Island Invaders 3D',       p:'com.exorid.IslandInvaders3D',      k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.IslandInvaders3D',      am:'https://appmagic.rocks/google-play/island-invaders-3d/com.exorid.IslandInvaders3D' },
-    { t:'Psycho Clinic',            p:'com.exorid.PsychoClinic',          k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.PsychoClinic',          am:'https://appmagic.rocks/google-play/psycho-clinic/com.exorid.PsychoClinic' },
-    { t:'Balloon Hit Master',       p:'com.exorid.BalloonHitMaster',      k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.BalloonHitMaster',      am:'https://appmagic.rocks/google-play/balloon-hit-master/com.exorid.BalloonHitMaster' },
-    { t:'Grapple Up',               p:'com.exorid.GrappleUP',             k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.GrappleUP',             am:'https://appmagic.rocks/google-play/grapple-up/com.exorid.GrappleUP' },
-    { t:'Towers on Plains',         p:'com.exorid.TowersOnPlains',        k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.TowersOnPlains',        am:'https://appmagic.rocks/google-play/towers-on-plains/com.exorid.TowersOnPlains' },
-    { t:'Cube Flip',                p:'com.exorid.CubeFlip',              k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.CubeFlip',              am:'https://appmagic.rocks/google-play/cube-flip/com.exorid.CubeFlip' },
-    { t:'Knights Clash',            p:'com.exorid.KnightsClash',          k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.KnightsClash',          am:'https://appmagic.rocks/google-play/knights-clash/com.exorid.KnightsClash' },
-    { t:'Prison Maze',              p:'com.exorid.Prison',                k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.Prison',                am:'https://appmagic.rocks/google-play/prison-maze/com.exorid.Prison' },
-    { t:'Tower Raid',               p:'com.exorid.TowerRaid',             k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.TowerRaid',             am:'https://appmagic.rocks/google-play/tower-raid/com.exorid.TowerRaid' },
-    { t:'Twisted Roads',            p:'com.exorid.TwistedRoads',          k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.TwistedRoads',          am:'https://appmagic.rocks/google-play/twisted-roads/com.exorid.TwistedRoads' },
-    { t:'Farm Corp',                p:'com.exorid.FarmCorp',              k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.FarmCorp',              am:'https://appmagic.rocks/google-play/farm-corp/com.exorid.FarmCorp' },
-    { t:'My Dino Ranch',            p:'com.exorid.MyDinoRanch',           k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.MyDinoRanch',           am:'https://appmagic.rocks/google-play/my-dinoranch/com.exorid.MyDinoRanch' },
-    { t:'SUMO TATAMI',              p:'app/3395290',                      k:'steam',      period:'steam',  u:'https://store.steampowered.com/app/3395290/SUMO_TATAMI/', icon:'https://cdn.cloudflare.steamstatic.com/steam/apps/3395290/header.jpg' },
-    { t:'Car Out Jam',              p:'com.Playgineers.CarOutJam',        k:'rustore',    period:'rustore', u:'https://www.rustore.ru/catalog/app/com.Playgineers.CarOutJam' },
-    { t:'Boat Escape',              p:'com.playgineers.boatescape',       k:'rustore',    period:'rustore', u:'https://www.rustore.ru/catalog/app/com.playgineers.boatescape' }
+    { t:'Clash of Monsters',        p:'com.exorid.ClashOfMonsters',       k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.ClashOfMonsters',       am:'https://appmagic.rocks/google-play/clash-of-monsters/com.exorid.ClashOfMonsters' },
+    { t:'Catch the Enemy\'s Flag',  p:'com.exorid.Catchtheenemysflag',    k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.Catchtheenemysflag',    am:'https://appmagic.rocks/google-play/satch-the-enemy-s-flag/com.exorid.Catchtheenemysflag' },
+    { t:'Stickman\'s Color Race',   p:'stickmens.coloring.gates.runner',  k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=stickmens.coloring.gates.runner',  am:'https://appmagic.rocks/google-play/stickmans-color-race/stickmens.coloring.gates.runner' },
+    { t:'Sling Ducks',              p:'com.exorid.SlingDucks',            k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.SlingDucks',            am:'https://appmagic.rocks/google-play/sling-ducks/com.exorid.SlingDucks' },
+    { t:'My Food Farm',             p:'com.exorid.MyFoodFarm',            k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.MyFoodFarm',            am:'https://appmagic.rocks/google-play/my-food-farm/com.exorid.MyFoodFarm' },
+    { t:'Peekaboo Rush',            p:'com.exorid.Peekaboo3D',            k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.Peekaboo3D',            am:'https://appmagic.rocks/google-play/peekaboo-rush/com.exorid.Peekaboo3D' },
+    { t:'Push Islands',             p:'com.exorid.PushIslands',           k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.PushIslands',           am:'https://appmagic.rocks/google-play/push-islands/com.exorid.PushIslands' },
+    { t:'Push Color',               p:'com.exorid.PushColor',             k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.PushColor',             am:'https://appmagic.rocks/google-play/push-color/com.exorid.PushColor' },
+    { t:'Conquest Masters',         p:'com.exorid.ConquestMasters',       k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.ConquestMasters',       am:'https://appmagic.rocks/google-play/conquest-masters/com.exorid.ConquestMasters' },
+    { t:'Lord\'s Land',             p:'com.exorid.LordsLands',            k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.LordsLands',            am:'https://appmagic.rocks/google-play/lord-s-land/com.exorid.LordsLands' },
+    { t:'Trash Factory',            p:'com.exorid.TrashFactory',          k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.TrashFactory',          am:'https://appmagic.rocks/google-play/trash-factory/com.exorid.TrashFactory' },
+    { t:'Dino Evo',                 p:'com.exorid.DinoEvo',               k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.DinoEvo',               am:'https://appmagic.rocks/google-play/dino-evo/com.exorid.DinoEvo' },
+    { t:'Island Invaders 3D',       p:'com.exorid.IslandInvaders3D',      k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.IslandInvaders3D',      am:'https://appmagic.rocks/google-play/island-invaders-3d/com.exorid.IslandInvaders3D' },
+    { t:'Psycho Clinic',            p:'com.exorid.PsychoClinic',          k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.PsychoClinic',          am:'https://appmagic.rocks/google-play/psycho-clinic/com.exorid.PsychoClinic' },
+    { t:'Balloon Hit Master',       p:'com.exorid.BalloonHitMaster',      k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.BalloonHitMaster',      am:'https://appmagic.rocks/google-play/balloon-hit-master/com.exorid.BalloonHitMaster' },
+    { t:'Grapple Up',               p:'com.exorid.GrappleUP',             k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.GrappleUP',             am:'https://appmagic.rocks/google-play/grapple-up/com.exorid.GrappleUP' },
+    { t:'Towers on Plains',         p:'com.exorid.TowersOnPlains',        k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.TowersOnPlains',        am:'https://appmagic.rocks/google-play/towers-on-plains/com.exorid.TowersOnPlains' },
+    { t:'Cube Flip',                p:'com.exorid.CubeFlip',              k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.CubeFlip',              am:'https://appmagic.rocks/google-play/cube-flip/com.exorid.CubeFlip' },
+    { t:'Knights Clash',            p:'com.exorid.KnightsClash',          k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.KnightsClash',          am:'https://appmagic.rocks/google-play/knights-clash/com.exorid.KnightsClash' },
+    { t:'Prison Maze',              p:'com.exorid.Prison',                k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.Prison',                am:'https://appmagic.rocks/google-play/prison-maze/com.exorid.Prison' },
+    { t:'Tower Raid',               p:'com.exorid.TowerRaid',             k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.TowerRaid',             am:'https://appmagic.rocks/google-play/tower-raid/com.exorid.TowerRaid' },
+    { t:'Twisted Roads',            p:'com.exorid.TwistedRoads',          k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.TwistedRoads',          am:'https://appmagic.rocks/google-play/twisted-roads/com.exorid.TwistedRoads' },
+    { t:'Farm Corp',                p:'com.exorid.FarmCorp',              k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.FarmCorp',              am:'https://appmagic.rocks/google-play/farm-corp/com.exorid.FarmCorp' },
+    { t:'My Dino Ranch',            p:'com.exorid.MyDinoRanch',           k:'googleplay', period:'exorid', team:'luckygames', u:'https://play.google.com/store/apps/details?id=com.exorid.MyDinoRanch',           am:'https://appmagic.rocks/google-play/my-dinoranch/com.exorid.MyDinoRanch' },
+
+    { t:'SUMO TATAMI',              p:'app/3395290',                      k:'steam', period:'steam',  team:'crazybarbarian', u:'https://store.steampowered.com/app/3395290/SUMO_TATAMI/',  icon:'https://cdn.cloudflare.steamstatic.com/steam/apps/3395290/header.jpg' },
+    { t:'Deadly Deals',             p:'app/3660360',                      k:'steam', period:'deadly', team:'deadlydeals',    u:'https://store.steampowered.com/app/3660360/Deadly_Deals/', icon:'https://cdn.cloudflare.steamstatic.com/steam/apps/3660360/header.jpg' },
+
+    { t:'Car Out Jam',              p:'com.Playgineers.CarOutJam',        k:'rustore', period:'rustore', team:'playgineers', u:'https://www.rustore.ru/catalog/app/com.Playgineers.CarOutJam' },
+    { t:'Boat Escape',              p:'com.playgineers.boatescape',       k:'rustore', period:'rustore', team:'playgineers', u:'https://www.rustore.ru/catalog/app/com.playgineers.boatescape' }
   ];
 
   let GAMES = STUB.map(g => ({
@@ -673,7 +575,35 @@
   };
 
   /* =========================================================
-     3.1. ФОТО ПРОФИЛЯ
+     3.1. РАБОТА С КОМАНДАМИ
+     ========================================================= */
+  function getTeam(id) {
+    if (!id) return null;
+    return (window.__TEAMS && window.__TEAMS[id]) || null;
+  }
+
+  function buildTeamHeader(p) {
+    const ids = Array.isArray(p.teams) ? p.teams : [];
+    const teams = ids.map(getTeam).filter(Boolean);
+
+    if (!teams.length) {
+      const role = p.role || '';
+      const name = p.company || '';
+      return { rolesHTML: role ? esc(role) : '', namesHTML: name ? esc(name) : '' };
+    }
+
+    const roles = [...new Set(teams.map(t => t.role).filter(Boolean))];
+    const namesHTML = teams.map(t => {
+      const safeName = esc(t.name || '');
+      if (t.url) return `<a href="${esc(t.url)}" target="_blank" rel="noopener">${safeName}</a>`;
+      return safeName;
+    }).filter(Boolean).join(', ');
+
+    return { rolesHTML: roles.map(esc).join(' · '), namesHTML };
+  }
+
+  /* =========================================================
+     3.2. ФОТО ПРОФИЛЯ
      ========================================================= */
   (function loadProfilePhoto() {
     const img = document.getElementById('profilePhoto');
@@ -706,9 +636,7 @@
     if (!data || !data.games) return;
     GAMES = STUB.map(g => {
       const d = data.games[g.p] || null;
-      if (!d) {
-        return { ...g, loaded: false, description: '', shots: [], extra: {}, icon: g.icon || null };
-      }
+      if (!d) return { ...g, loaded: false, description: '', shots: [], extra: {}, icon: g.icon || null };
       return {
         ...g,
         t: d.title || g.t,
@@ -767,6 +695,9 @@
     const n = games.length;
     const countLabel = `${n} ${plural(n, 'проект', 'проекта', 'проектов')}`;
 
+    const { rolesHTML, namesHTML } = buildTeamHeader(p);
+    const headerLine = [rolesHTML, namesHTML].filter(Boolean).join(' · ');
+
     const cards = games.map((g, i) =>
       cardHTML(g).replace('class="card"', `class="card" style="--d:${Math.min(i, 14) * 35}ms"`)
     ).join('');
@@ -776,7 +707,7 @@
         <div class="period__head">
           <div class="period__time">${esc(p.label)}</div>
           <div class="period__info">
-            <h3>${esc(p.role)}${p.company && p.company !== '—' ? ' · ' + esc(p.company) : ''}</h3>
+            <h3>${headerLine}</h3>
             <p>${esc(p.note)}</p>
           </div>
           <span class="period__count">${countLabel}</span>
@@ -854,7 +785,6 @@
     }
   });
 
-  /* Подгоняем сетку скриншотов под их пропорции */
   function adaptShotsGrid(container) {
     if (!container) return;
     const imgs = container.querySelectorAll('img');
@@ -877,8 +807,7 @@
       else if (ratio < 1.6)  minPx = 150;
       else                   minPx = 170;
 
-      container.style.gridTemplateColumns =
-        `repeat(auto-fill, minmax(${minPx}px, 1fr))`;
+      container.style.gridTemplateColumns = `repeat(auto-fill, minmax(${minPx}px, 1fr))`;
     };
 
     let pending = imgs.length;
@@ -900,8 +829,12 @@
     const period = PERIODS.find(p => p.id === g.period);
     const periodBadge = period ? `<span class="tag">${esc(period.label)}</span>` : '';
 
+    const team = getTeam(g.team);
+    const teamBadge = team ? `<span class="tag">${esc(team.name)}</span>` : '';
+
     const badges = [
       `<span class="tag">${esc(PLATFORMS[g.k].label)}</span>`,
+      teamBadge,
       periodBadge,
       ...Object.entries(g.extra || {}).map(([k, v]) => `<span class="tag">${esc(k)}: ${esc(v)}</span>`)
     ].filter(Boolean).join('');
@@ -986,7 +919,26 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 
   /* =========================================================
-     8. ЛАЙТБОКС — вертикальная лента скриншотов
+     7.1. ПЛАВНЫЙ СКРОЛЛ ПО КНОПКАМ ШАПКИ
+     — заменяет якорные ссылки, чтобы не было предупреждений
+       Chromium про file:// origin
+     ========================================================= */
+  document.querySelectorAll('[data-scroll]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.scroll;
+      if (id === 'top') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  /* =========================================================
+     8. ЛАЙТБОКС
      ========================================================= */
   const lb        = document.getElementById('lightbox');
   const lbScroll  = document.getElementById('lbScroll');
