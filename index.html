@@ -47,7 +47,6 @@
     ::selection{background:var(--accent);color:var(--accent-ink)}
     .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad-x)}
 
-    /* Topbar */
     .topbar{
       position:sticky;top:0;z-index:50;
       backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
@@ -56,7 +55,6 @@
     }
     .topbar__in{display:flex;align-items:center;gap:16px;height:54px}
 
-    /* Логотип-кнопка — без якорной ссылки */
     .brand{
       font-weight:600;font-size:12.5px;letter-spacing:.02em;white-space:nowrap;
       font-family:var(--font);
@@ -66,7 +64,6 @@
     .brand:hover{opacity:.85}
     .brand span{color:var(--accent)}
 
-    /* Навигация — кнопки вместо ссылок */
     .nav{margin-left:auto;display:flex;gap:20px;font-size:12.5px}
     .nav button{
       font:inherit;font-family:var(--font);font-size:12.5px;
@@ -81,7 +78,6 @@
     .theme-btn:hover{color:var(--text);border-color:var(--border-hi)}
     .theme-btn svg{width:13px;height:13px}
 
-    /* Hero */
     .hero{padding:var(--hero-pad) 0}
     .hero__grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:center}
     .eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
@@ -94,7 +90,6 @@
     .btn--primary:hover{filter:brightness(1.07)}
     .btn[disabled]{opacity:.5;pointer-events:none}
 
-    /* Profile photo */
     .hero__photo{position:relative;justify-self:end;width:100%;max-width:280px;aspect-ratio:4/5}
     .hero__photo-frame{position:absolute;inset:0;border-radius:20px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(150deg, hsl(90 30% 18%), hsl(140 35% 10%));box-shadow:var(--shadow)}
     .hero__photo-frame::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);background-size:12px 12px;pointer-events:none;z-index:0}
@@ -107,12 +102,10 @@
     .hero__photo-badge{position:absolute;left:-10px;bottom:20px;z-index:2;display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;background:var(--bg-soft);border:1px solid var(--border);font-size:10.5px;letter-spacing:.05em;color:var(--muted);box-shadow:var(--shadow)}
     .hero__photo-badge::before{content:"";width:6px;height:6px;border-radius:999px;background:var(--accent);box-shadow:0 0 0 3px var(--glow)}
 
-    /* Stats */
     .stats{display:flex;flex-wrap:wrap;gap:32px;list-style:none;margin:36px 0 0;padding:22px 0 0;border-top:1px solid var(--border)}
     .stats b{display:block;font-size:20px;font-weight:600;letter-spacing:-.02em;line-height:1.2}
     .stats span{font-size:11px;color:var(--muted);letter-spacing:.03em}
 
-    /* Sections */
     section{padding:var(--sec-pad) 0;border-top:1px solid var(--border)}
     .sec-head{margin-bottom:26px}
     .sec-head h2{font-size:clamp(19px,2.4vw,24px);font-weight:600;letter-spacing:-.02em;margin:0 0 6px}
@@ -123,14 +116,12 @@
     .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}
     .tag{font-size:10.5px;padding:5px 10px;border-radius:7px;border:1px solid var(--border);color:var(--muted)}
 
-    /* Filters */
     .filters{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 28px}
     .filter{font:inherit;font-family:var(--font);font-size:12px;padding:6px 12px;border-radius:999px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:.2s ease}
     .filter:hover{color:var(--text);border-color:var(--border-hi)}
     .filter.is-active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:500}
     .filter em{font-style:normal;opacity:.55;margin-left:4px;font-size:10.5px}
 
-    /* Periods — вертикальный таймлайн */
     .timeline{position:relative;padding-left:28px}
     .timeline::before{
       content:"";position:absolute;left:4px;top:8px;bottom:8px;width:1px;
@@ -162,7 +153,30 @@
       margin-top:10px;white-space:nowrap;
     }
 
-    /* Cards grid */
+    /* Ветвление — если период пересекается с предыдущим */
+    .period[data-branch="true"]{
+      margin-left:40px;
+    }
+    .period[data-branch="true"]::before{
+      width:8px;
+      height:8px;
+      top:5px;
+    }
+    .period[data-branch="true"]::after{
+      content:"";
+      position:absolute;
+      left:-64px;
+      top:9px;
+      width:44px;
+      height:1px;
+      background:linear-gradient(to right,
+      var(--accent) 0%,
+      color-mix(in srgb, var(--accent) 55%, transparent) 55%,
+      transparent 100%);
+      pointer-events:none;
+      z-index:0;
+    }
+
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--grid-min),1fr));gap:var(--grid-gap)}
     .card{display:block;cursor:pointer;outline:none;opacity:0;transform:translateY(14px);transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .55s cubic-bezier(.2,.8,.2,1),translate .25s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0ms)}
     .card.in{opacity:1;transform:none}
@@ -179,7 +193,6 @@
     .card__title{margin:10px 1px 0;font-size:12.5px;font-weight:500;letter-spacing:-.01em;line-height:1.3}
     .card__meta{margin:2px 1px 0;font-size:9.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-    /* Modal */
     .modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
     .modal.is-open{display:flex}
     .modal__backdrop{position:absolute;inset:0;background:color-mix(in srgb, var(--bg) 72%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);animation:fadeIn .22s ease}
@@ -214,7 +227,6 @@
     .modal__badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
     .modal__desc{margin:0 0 16px;color:var(--muted);font-size:13px;line-height:1.6;white-space:pre-line}
 
-    /* Скриншоты в модалке */
     .modal__shots{
       display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
       gap:8px;margin-bottom:0;align-items:start;
@@ -231,7 +243,6 @@
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
     @keyframes modalIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
 
-    /* Lightbox: вертикальная лента скриншотов */
     .lightbox{
       position:fixed;inset:0;z-index:200;display:none;
       background:color-mix(in srgb, var(--bg) 92%, transparent);
@@ -276,12 +287,10 @@
       .lightbox__close{top:10px;right:10px;width:36px;height:36px}
     }
 
-    /* Footer */
     footer{border-top:1px solid var(--border);padding:24px 0 32px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:11.5px;color:var(--muted)}
     .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
     .reveal.in{opacity:1;transform:none}
 
-    /* Планшет */
     @media(max-width:900px){
       :root{--pad-x:20px;--sec-pad:44px;--hero-pad:48px;--grid-min:140px;--grid-gap:14px}
       .hero__grid{grid-template-columns:1fr;gap:32px}
@@ -291,7 +300,6 @@
       .hero__text .lead{max-width:62ch}
     }
 
-    /* Мобильный */
     @media(max-width:640px){
       :root{--pad-x:14px;--sec-pad:32px;--hero-pad:24px;--grid-min:128px;--grid-gap:10px;--radius:12px}
       body{font-size:13.5px;line-height:1.5}
@@ -346,6 +354,15 @@
       .period__info p{font-size:12px;line-height:1.5}
       .period__count{font-size:10px;padding:3px 8px;margin-top:8px}
 
+      /* Мобильное ветвление */
+      .period[data-branch="true"]{margin-left:28px}
+      .period[data-branch="true"]::before{width:7px;height:7px;top:4.5px}
+      .period[data-branch="true"]::after{
+        left:-46px;
+        top:8px;
+        width:32px;
+      }
+
       .card__title{font-size:11.5px;margin-top:8px}
       .card__meta{font-size:9px}
       .thumb__ph{font-size:18px}
@@ -367,7 +384,6 @@
       footer{padding:18px 0 24px;font-size:11px;gap:6px}
     }
 
-    /* Очень узкие (≤380) */
     @media(max-width:380px){
       :root{--grid-min:110px;--grid-gap:8px}
       .hero h1{font-size:20px}
@@ -488,12 +504,9 @@
     </svg>
   </button>
 
-  <div class="lightbox__scroll" id="lbScroll">
-    <!-- сюда JS вставит img-скриншоты -->
-  </div>
+  <div class="lightbox__scroll" id="lbScroll"></div>
 </div>
 
-<!-- ▼ Команды — можно править отдельно, не трогая index.html -->
 <script src="teams-data.js"></script>
 <script src="games-data.js"></script>
 
@@ -507,6 +520,56 @@
     { id: 'deadly',  label: 'Декабрь 2024 — Март 2025',   teams: ['deadlydeals'],    note: 'Разработка и релиз игры в Steam.' },
     { id: 'rustore', label: 'Ноябрь 2024 — Август 2026',   teams: ['playgineers'],    note: 'Разработка игр для RuStore.' }
   ];
+
+  /* =========================================================
+     1.1. ПАРСИНГ ДАТ И ОПРЕДЕЛЕНИЕ ПЕРЕСЕЧЕНИЙ
+     ========================================================= */
+  const RU_MONTHS = {
+    'январь': 0, 'января': 0,
+    'февраль': 1, 'февраля': 1,
+    'март': 2, 'марта': 2,
+    'апрель': 3, 'апреля': 3,
+    'май': 4, 'мая': 4,
+    'июнь': 5, 'июня': 5,
+    'июль': 6, 'июля': 6,
+    'август': 7, 'августа': 7,
+    'сентябрь': 8, 'сентября': 8,
+    'октябрь': 9, 'октября': 9,
+    'ноябрь': 10, 'ноября': 10,
+    'декабрь': 11, 'декабря': 11,
+  };
+
+  function parsePeriodRange(label) {
+    if (!label) return null;
+    const parts = label.split(/\s*[—–]\s*/).map(s => s.trim());
+    if (parts.length !== 2) return null;
+
+    const parseOne = (str, isEnd) => {
+      const m = str.match(/^(\p{L}+)\s+(\d{4})$/u);
+      if (!m) return null;
+      const month = RU_MONTHS[m[1].toLowerCase()];
+      const year = parseInt(m[2], 10);
+      if (month === undefined || isNaN(year)) return null;
+      const d = new Date(year, month, 1);
+      if (isEnd) {
+        d.setMonth(d.getMonth() + 1);
+        d.setDate(0);
+      }
+      return d;
+    };
+
+    const start = parseOne(parts[0], false);
+    const end = parseOne(parts[1], true);
+    if (!start || !end) return null;
+    return { start, end };
+  }
+
+  function periodsOverlap(a, b) {
+    const ra = parsePeriodRange(a.label);
+    const rb = parsePeriodRange(b.label);
+    if (!ra || !rb) return false;
+    return ra.start <= rb.end && rb.start <= ra.end;
+  }
 
   /* =========================================================
      2. ПЛАТФОРМЫ И ЗАГЛУШКИ
@@ -689,11 +752,21 @@
       </div>`;
   }
 
-  function periodHTML(p) {
+  function periodHTML(p, idx, allPeriods) {
     const games = GAMES.filter(g => g.period === p.id);
     if (!games.length) return '';
     const n = games.length;
     const countLabel = `${n} ${plural(n, 'проект', 'проекта', 'проектов')}`;
+
+    /* Определяем, ветвится ли этот период:
+       пересекается ли он по датам с любым из предыдущих */
+    let isBranch = false;
+    for (let i = 0; i < idx; i++) {
+      if (periodsOverlap(p, allPeriods[i])) {
+        isBranch = true;
+        break;
+      }
+    }
 
     const { rolesHTML, namesHTML } = buildTeamHeader(p);
     const headerLine = [rolesHTML, namesHTML].filter(Boolean).join(' · ');
@@ -703,7 +776,7 @@
     ).join('');
 
     return `
-      <div class="period" data-period="${p.id}">
+      <div class="period" data-period="${p.id}"${isBranch ? ' data-branch="true"' : ''}>
         <div class="period__head">
           <div class="period__time">${esc(p.label)}</div>
           <div class="period__info">
@@ -717,7 +790,7 @@
   }
 
   function renderAll() {
-    periodsEl.innerHTML = PERIODS.map(periodHTML).join('');
+    periodsEl.innerHTML = PERIODS.map((p, i) => periodHTML(p, i, PERIODS)).join('');
 
     const counts = GAMES.reduce((a, g) => (a[g.k] = (a[g.k] || 0) + 1, a), {});
     const filterDefs = [
@@ -918,11 +991,6 @@
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  /* =========================================================
-     7.1. ПЛАВНЫЙ СКРОЛЛ ПО КНОПКАМ ШАПКИ
-     — заменяет якорные ссылки, чтобы не было предупреждений
-       Chromium про file:// origin
-     ========================================================= */
   document.querySelectorAll('[data-scroll]').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = btn.dataset.scroll;
@@ -931,9 +999,7 @@
         return;
       }
       const target = document.getElementById(id);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 
