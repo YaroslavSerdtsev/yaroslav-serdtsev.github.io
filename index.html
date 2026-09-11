@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ярослав Сердцев — Game Developer</title>
+  <meta name="description" content="Портфолио разработчика игр: мобильные и PC-проекты на Google Play, Steam и RuStore.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0a0b0d; --bg-soft:#101215; --border:#22262b; --border-hi:#343a41;
+      --text:#eceef1; --muted:#878e98; --accent:#c8f751; --accent-ink:#0a0b0d;
+      --glow:rgba(200,247,81,.10); --shadow:0 18px 40px -20px rgba(0,0,0,.9);
+      --radius:18px; --max:1080px;
+      --font: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    html[data-theme="light"]{
+      --bg:#fafaf8; --bg-soft:#ffffff; --border:#e7e7e2; --border-hi:#d3d3cc;
+      --text:#14171a; --muted:#6c737c; --accent:#5f9410; --accent-ink:#ffffff;
+      --glow:rgba(95,148,16,.09); --shadow:0 18px 40px -24px rgba(20,23,26,.35);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    body{
+      margin:0;background:var(--bg);color:var(--text);
+      font-family:var(--font);
+      font-size:14.5px;line-height:1.65;-webkit-font-smoothing:antialiased;
+      font-feature-settings:"calt" 1, "liga" 1;
+      transition:background .3s ease,color .3s ease;
+    }
+    body::before{
+      content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+      background:
+              radial-gradient(720px 420px at 12% -10%, var(--glow), transparent 65%),
+              radial-gradient(620px 380px at 92% 6%, var(--glow), transparent 65%);
+    }
+    main,header,footer{position:relative;z-index:1}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    ::selection{background:var(--accent);color:var(--accent-ink)}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+    .topbar{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:color-mix(in srgb, var(--bg) 78%, transparent);border-bottom:1px solid var(--border)}
+    .topbar__in{display:flex;align-items:center;gap:20px;height:62px}
+    .brand{font-weight:600;font-size:13px;letter-spacing:.02em;white-space:nowrap}
+    .brand span{color:var(--accent)}
+    .nav{margin-left:auto;display:flex;gap:26px;font-size:13px;color:var(--muted)}
+    .nav a{transition:color .2s}
+    .nav a:hover{color:var(--text)}
+    .theme-btn{width:34px;height:34px;flex:0 0 auto;display:grid;place-items:center;border-radius:999px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:.2s}
+    .theme-btn:hover{color:var(--text);border-color:var(--border-hi)}
+    @media(max-width:720px){.nav{display:none}}
+
+    .hero{padding:88px 0 88px}
+    .hero__grid{display:grid;grid-template-columns:1.4fr 1fr;gap:64px;align-items:center}
+    .eyebrow{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 20px}
+    .hero h1{font-size:clamp(30px,5vw,54px);line-height:1.1;letter-spacing:-.03em;font-weight:600;margin:0 0 22px;max-width:16ch}
+    .hero .lead{font-size:clamp(14px,1.4vw,16px);color:var(--muted);max-width:52ch;margin:0 0 34px}
+    .hero__links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:0}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;font-size:13px;font-weight:500;border:1px solid var(--border-hi);color:var(--text);background:transparent;cursor:pointer;font-family:inherit;transition:.22s ease}
+    .btn:hover{border-color:var(--text);transform:translateY(-1px)}
+    .btn--primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+    .btn--primary:hover{filter:brightness(1.07)}
+    .btn[disabled]{opacity:.5;pointer-events:none}
+
+    /* фото профиля */
+    .hero__photo{position:relative;justify-self:end;width:100%;max-width:340px;aspect-ratio:4/5}
+    .hero__photo-frame{position:absolute;inset:0;border-radius:24px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(150deg, hsl(90 30% 18%), hsl(140 35% 10%));box-shadow:var(--shadow)}
+    .hero__photo-frame::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);background-size:14px 14px;pointer-events:none;z-index:0}
+    .hero__photo img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s ease}
+    .hero__photo img.loaded{opacity:1}
+    .hero__photo-placeholder{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);text-align:center;padding:20px}
+    .hero__photo-placeholder svg{opacity:.5}
+    .hero__photo-placeholder[hidden]{display:none}
+    .hero__photo-decor{position:absolute;right:-14px;bottom:-14px;width:120px;height:120px;border-radius:20px;border:1px solid var(--accent);background:transparent;pointer-events:none;opacity:.6}
+    .hero__photo-badge{position:absolute;left:-12px;bottom:24px;z-index:2;display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:var(--bg-soft);border:1px solid var(--border);font-size:11px;letter-spacing:.06em;color:var(--muted);box-shadow:var(--shadow)}
+    .hero__photo-badge::before{content:"";width:7px;height:7px;border-radius:999px;background:var(--accent);box-shadow:0 0 0 3px var(--glow)}
+    @media(max-width:820px){
+      .hero{padding:56px 0 64px}
+      .hero__grid{grid-template-columns:1fr;gap:44px}
+      .hero__photo{justify-self:center;max-width:280px;order:-1}
+      .hero__photo-decor{width:80px;height:80px;right:-10px;bottom:-10px}
+      .hero__photo-badge{left:-6px;bottom:14px}
+      .hero h1{max-width:none}
+    }
+
+    .stats{display:flex;flex-wrap:wrap;gap:44px;list-style:none;margin:56px 0 0;padding:26px 0 0;border-top:1px solid var(--border)}
+    .stats b{display:block;font-size:24px;font-weight:600;letter-spacing:-.02em;line-height:1.2}
+    .stats span{font-size:12px;color:var(--muted);letter-spacing:.03em}
+
+    section{padding:76px 0;border-top:1px solid var(--border)}
+    .sec-head{margin-bottom:36px}
+    .sec-head h2{font-size:clamp(20px,2.6vw,26px);font-weight:600;letter-spacing:-.02em;margin:0 0 8px}
+    .sec-head p{margin:0;color:var(--muted);font-size:14px;max-width:62ch}
+    .prose{max-width:66ch;color:var(--muted);font-size:14.5px}
+    .prose p{margin:0 0 16px}
+    .prose strong{color:var(--text);font-weight:500}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+    .tag{font-size:11px;padding:6px 11px;border-radius:8px;border:1px solid var(--border);color:var(--muted)}
+
+    .filters{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 40px}
+    .filter{font:inherit;font-family:var(--font);font-size:12.5px;padding:8px 15px;border-radius:999px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:.2s ease}
+    .filter:hover{color:var(--text);border-color:var(--border-hi)}
+    .filter.is-active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:500}
+    .filter em{font-style:normal;opacity:.55;margin-left:5px;font-size:11px}
+
+    .period{padding:40px 0;border-top:1px dashed var(--border)}
+    .period:first-child{border-top:0;padding-top:0}
+    .period[hidden]{display:none}
+    .period__head{display:grid;grid-template-columns:200px 1fr auto;gap:32px;align-items:baseline;margin-bottom:26px}
+    .period__time{font-size:12px;color:var(--muted);letter-spacing:.04em;white-space:nowrap;position:relative;padding-left:18px}
+    .period__time::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:8px;height:8px;border-radius:999px;background:var(--accent);box-shadow:0 0 0 4px var(--glow)}
+    .period__info h3{margin:0 0 4px;font-size:15px;font-weight:600;letter-spacing:-.01em;line-height:1.3}
+    .period__info p{margin:0;font-size:13px;color:var(--muted);max-width:56ch}
+    .period__count{font-size:11px;color:var(--muted);padding:5px 11px;border:1px solid var(--border);border-radius:999px;white-space:nowrap;align-self:start}
+    @media(max-width:720px){
+      .period__head{grid-template-columns:1fr;gap:10px}
+      .period__count{justify-self:start}
+      .period{padding:32px 0}
+    }
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:20px 18px}
+    .card{display:block;cursor:pointer;outline:none;opacity:0;transform:translateY(16px);transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .6s cubic-bezier(.2,.8,.2,1),translate .28s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0ms)}
+    .card.in{opacity:1;transform:none}
+    .card.in:hover{translate:0 -5px}
+    .card:focus-visible .thumb{outline:2px solid var(--accent);outline-offset:3px}
+    .card[hidden]{display:none}
+    .thumb{position:relative;aspect-ratio:1/1;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);background:#0c0e11;transition:border-color .3s,box-shadow .3s}
+    .card:hover .thumb{border-color:var(--accent);box-shadow:var(--shadow),0 0 0 3px var(--glow)}
+    .thumb__ph{position:absolute;inset:0;display:grid;place-items:center;font-size:22px;font-weight:500;letter-spacing:.06em;color:rgba(255,255,255,.34)}
+    .thumb__ph::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);background-size:10px 10px}
+    .thumb__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s ease}
+    .thumb__img.loaded{opacity:1}
+    .chip{position:absolute;top:9px;left:9px;z-index:2;font-size:9.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;padding:4px 8px;border-radius:999px;background:rgba(8,10,12,.72);border:1px solid rgba(255,255,255,.14);color:#fff;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+    .card__title{margin:12px 2px 0;font-size:13px;font-weight:500;letter-spacing:-.01em;line-height:1.35}
+    .card__meta{margin:3px 2px 0;font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+    .modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:24px}
+    .modal.is-open{display:flex}
+    .modal__backdrop{position:absolute;inset:0;background:color-mix(in srgb, var(--bg) 70%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);animation:fadeIn .25s ease}
+    .modal__panel{position:relative;width:100%;max-width:720px;max-height:min(88vh,760px);overflow-y:auto;background:var(--bg-soft);border:1px solid var(--border);border-radius:22px;box-shadow:0 40px 90px -30px rgba(0,0,0,.8);animation:modalIn .35s cubic-bezier(.2,.8,.2,1);overscroll-behavior:contain}
+    .modal__panel::-webkit-scrollbar{width:8px}
+    .modal__panel::-webkit-scrollbar-thumb{background:var(--border-hi);border-radius:8px}
+    .modal__close{position:absolute;top:14px;right:14px;z-index:5;width:36px;height:36px;display:grid;place-items:center;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(8,10,12,.55);color:#fff;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:.2s ease}
+    .modal__close:hover{background:rgba(8,10,12,.8);transform:rotate(90deg)}
+    .modal__cover{position:relative;aspect-ratio:16/7;overflow:hidden;background:#0c0e11;border-radius:22px 22px 0 0}
+    .modal__cover img{width:100%;height:100%;object-fit:cover}
+    .modal__cover .chip{top:14px;left:14px}
+    .modal__body{padding:24px 28px 28px}
+    .modal__body h2{margin:0 0 6px;font-size:clamp(18px,2.2vw,22px);font-weight:600;letter-spacing:-.015em;line-height:1.25}
+    .modal__pkg{margin:0 0 16px;font-size:11.5px;color:var(--muted);word-break:break-all}
+    .modal__badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+    .modal__desc{margin:0 0 18px;color:var(--muted);font-size:13.5px;line-height:1.7;white-space:pre-line}
+    .modal__shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:20px}
+    .modal__shots a{display:block}
+    .modal__shots img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:1px solid var(--border);background:#0c0e11;cursor:zoom-in;transition:transform .2s ease,border-color .2s ease}
+    .modal__shots img:hover{transform:scale(1.02);border-color:var(--accent)}
+    .modal__actions{display:flex;flex-wrap:wrap;gap:10px}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes modalIn{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:none}}
+    @media (max-width:600px){
+      .modal{padding:0}
+      .modal__panel{max-width:none;height:100%;max-height:100%;border-radius:0}
+      .modal__cover{border-radius:0;aspect-ratio:16/9}
+      .modal__body{padding:20px 20px 24px}
+    }
+
+    footer{border-top:1px solid var(--border);padding:32px 0 44px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+    .reveal.in{opacity:1;transform:none}
+    @media(prefers-reduced-motion:reduce){
+      *{animation:none!important;transition-duration:.01ms!important}
+      .reveal,.card{opacity:1!important;transform:none!important}
+    }
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar__in">
+    <a class="brand" href="#top">Ярослав<span> </span>Сердцев</a>
+    <nav class="nav">
+      <a href="#about">Обо мне</a>
+      <a href="#work">Опыт и проекты</a>
+    </nav>
+    <button class="theme-btn" id="themeToggle" aria-label="Переключить тему">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" style="border-top:0">
+    <div class="wrap">
+      <div class="hero__grid">
+        <div class="hero__text">
+          <p class="eyebrow">Game Developer · Unity / C#</p>
+          <h1>Ярослав Сердцев</h1>
+          <p class="lead">Разрабатываю мобильные и PC-игры. От прототипа и геймплейного кода до релиза в сторах и последующей поддержки.</p>
+          <div class="hero__links">
+            <a class="btn" href="https://t.me/Friend_Pirozhok" target="_blank" rel="noopener">Telegram</a>
+            <a class="btn" href="https://github.com/blind0203" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+        <div class="hero__photo">
+          <div class="hero__photo-frame">
+            <!--
+              Скрипт ниже пробует загрузить фото из этих путей:
+                assets/avatar.jpg  →  .png  →  .webp
+                photo.jpg          →  .png  →  .webp
+              Если ничего не найдено — остаётся заглушка.
+              Положите фото в папку assets/ или рядом с index.html.
+            -->
+            <img id="profilePhoto" alt="Ярослав Сердцев">
+            <div class="hero__photo-placeholder" id="profilePhotoPlaceholder">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="3"/>
+                <circle cx="9" cy="10" r="2"/>
+                <path d="M4 18l5-5 4 4 3-3 4 4"/>
+              </svg>
+              <span>Ваше фото</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ul class="stats">
+        <li><b data-stat="games">—</b><span>Проектов</span></li>
+        <li><b data-stat="platforms">—</b><span>Платформы</span></li>
+        <li><b>5+</b><span>Лет в разработке</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap reveal">
+      <div class="sec-head"><h2>Обо мне</h2></div>
+      <div class="prose">
+        <p>Пишу геймплей, системы и инструменты на <strong>Unity / C#</strong>. Люблю быстрые итерации: собрать прототип, проверить гипотезу, довести до релиза. Работал над проектами в жанрах hyper-casual, mid-core, idle и симуляторов.</p>
+        <p>Отвечал за полный цикл: игровая логика, UI, интеграции SDK (реклама, аналитика, IAP), оптимизация под слабые устройства, публикация и обновления в Google Play, Steam и RuStore.</p>
+        <div class="tags">
+          <span class="tag">Unity</span><span class="tag">C#</span>
+          <span class="tag">Gameplay</span><span class="tag">UI / UX</span>
+          <span class="tag">Optimization</span><span class="tag">SDK Integration</span>
+          <span class="tag">Shaders</span><span class="tag">Git</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>Опыт и проекты</h2>
+        <p>Периоды работы и игры, над которыми я работал</p>
+      </div>
+      <div class="filters reveal" id="filters"></div>
+      <div id="periods"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>© <span id="year"></span> Ярослав Сердцев</span>
+</footer>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal__backdrop" data-close></div>
+  <div class="modal__panel" role="dialog" aria-modal="true" aria-label="Подробности об игре">
+    <button class="modal__close" data-close aria-label="Закрыть">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="modal__content" id="modalContent"></div>
+  </div>
+</div>
+
+<!-- ★ Данные грузятся как обычный скрипт — работает через file:// без CORS -->
+<script src="games-data.js"></script>
+
+<script>
+  /* =========================================================
+     1. ПЕРИОДЫ
+     ========================================================= */
+  const PERIODS = [
+    { id: 'exorid',  label: 'Ноябрь 2020 — Октябрь 2022', role: 'Unity Developer', company: 'LuckyGames',           note: 'Разработка и поддержка мобильных игр: геймплей, UI, интеграции SDK, оптимизация, публикации в Google Play.' },
+    { id: 'steam',   label: 'Октябрь 2023 — Октябрь 2024', role: 'Unity Developer', company: 'CrazyBarbarianGames', note: 'Разработка и релиз игры в Steam.' },
+    { id: 'rustore', label: 'Ноябрь 2024 — Август 2026',   role: 'Unity Developer', company: 'Playgineers',         note: 'Разработка игр для RuStore.' }
+  ];
+
+  /* =========================================================
+     2. ПЛАТФОРМЫ И ЗАГЛУШКИ
+     ========================================================= */
+  const PLATFORMS = {
+    googleplay: { label: 'Google Play', short: 'GP' },
+    steam:      { label: 'Steam',       short: 'ST' },
+    rustore:    { label: 'RuStore',     short: 'RS' }
+  };
+
+  const STUB = [
+    { t:'Clash of Monsters',        p:'com.exorid.ClashOfMonsters',       k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.ClashOfMonsters',       am:'https://appmagic.rocks/google-play/clash-of-monsters/com.exorid.ClashOfMonsters' },
+    { t:'Catch the Enemy\'s Flag',  p:'com.exorid.Catchtheenemysflag',    k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.Catchtheenemysflag',    am:'https://appmagic.rocks/google-play/satch-the-enemy-s-flag/com.exorid.Catchtheenemysflag' },
+    { t:'Stickman\'s Color Race',   p:'stickmens.coloring.gates.runner',  k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=stickmens.coloring.gates.runner',  am:'https://appmagic.rocks/google-play/stickmans-color-race/stickmens.coloring.gates.runner' },
+    { t:'Sling Ducks',              p:'com.exorid.SlingDucks',            k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.SlingDucks',            am:'https://appmagic.rocks/google-play/sling-ducks/com.exorid.SlingDucks' },
+    { t:'My Food Farm',             p:'com.exorid.MyFoodFarm',            k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.MyFoodFarm',            am:'https://appmagic.rocks/google-play/my-food-farm/com.exorid.MyFoodFarm' },
+    { t:'Peekaboo Rush',            p:'com.exorid.Peekaboo3D',            k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.Peekaboo3D',            am:'https://appmagic.rocks/google-play/peekaboo-rush/com.exorid.Peekaboo3D' },
+    { t:'Push Islands',             p:'com.exorid.PushIslands',           k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.PushIslands',           am:'https://appmagic.rocks/google-play/push-islands/com.exorid.PushIslands' },
+    { t:'Push Color',               p:'com.exorid.PushColor',             k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.PushColor',             am:'https://appmagic.rocks/google-play/push-color/com.exorid.PushColor' },
+    { t:'Conquest Masters',         p:'com.exorid.ConquestMasters',       k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.ConquestMasters',       am:'https://appmagic.rocks/google-play/conquest-masters/com.exorid.ConquestMasters' },
+    { t:'Lord\'s Land',             p:'com.exorid.LordsLands',            k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.LordsLands',            am:'https://appmagic.rocks/google-play/lord-s-land/com.exorid.LordsLands' },
+    { t:'Trash Factory',            p:'com.exorid.TrashFactory',          k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.TrashFactory',          am:'https://appmagic.rocks/google-play/trash-factory/com.exorid.TrashFactory' },
+    { t:'Dino Evo',                 p:'com.exorid.DinoEvo',               k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.DinoEvo',               am:'https://appmagic.rocks/google-play/dino-evo/com.exorid.DinoEvo' },
+    { t:'Island Invaders 3D',       p:'com.exorid.IslandInvaders3D',      k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.IslandInvaders3D',      am:'https://appmagic.rocks/google-play/island-invaders-3d/com.exorid.IslandInvaders3D' },
+    { t:'Psycho Clinic',            p:'com.exorid.PsychoClinic',          k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.PsychoClinic',          am:'https://appmagic.rocks/google-play/psycho-clinic/com.exorid.PsychoClinic' },
+    { t:'Balloon Hit Master',       p:'com.exorid.BalloonHitMaster',      k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.BalloonHitMaster',      am:'https://appmagic.rocks/google-play/balloon-hit-master/com.exorid.BalloonHitMaster' },
+    { t:'Grapple Up',               p:'com.exorid.GrappleUP',             k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.GrappleUP',             am:'https://appmagic.rocks/google-play/grapple-up/com.exorid.GrappleUP' },
+    { t:'Towers on Plains',         p:'com.exorid.TowersOnPlains',        k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.TowersOnPlains',        am:'https://appmagic.rocks/google-play/towers-on-plains/com.exorid.TowersOnPlains' },
+    { t:'Cube Flip',                p:'com.exorid.CubeFlip',              k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.CubeFlip',              am:'https://appmagic.rocks/google-play/cube-flip/com.exorid.CubeFlip' },
+    { t:'Knights Clash',            p:'com.exorid.KnightsClash',          k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.KnightsClash',          am:'https://appmagic.rocks/google-play/knights-clash/com.exorid.KnightsClash' },
+    { t:'Prison Maze',              p:'com.exorid.Prison',                k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.Prison',                am:'https://appmagic.rocks/google-play/prison-maze/com.exorid.Prison' },
+    { t:'Tower Raid',               p:'com.exorid.TowerRaid',             k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.TowerRaid',             am:'https://appmagic.rocks/google-play/tower-raid/com.exorid.TowerRaid' },
+    { t:'Twisted Roads',            p:'com.exorid.TwistedRoads',          k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.TwistedRoads',          am:'https://appmagic.rocks/google-play/twisted-roads/com.exorid.TwistedRoads' },
+    { t:'Farm Corp',                p:'com.exorid.FarmCorp',              k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.FarmCorp',              am:'https://appmagic.rocks/google-play/farm-corp/com.exorid.FarmCorp' },
+    { t:'My Dino Ranch',            p:'com.exorid.MyDinoRanch',           k:'googleplay', period:'exorid', u:'https://play.google.com/store/apps/details?id=com.exorid.MyDinoRanch',           am:'https://appmagic.rocks/google-play/my-dinoranch/com.exorid.MyDinoRanch' },
+    { t:'SUMO TATAMI',              p:'app/3395290',                      k:'steam',      period:'steam',  u:'https://store.steampowered.com/app/3395290/SUMO_TATAMI/', icon:'https://cdn.cloudflare.steamstatic.com/steam/apps/3395290/header.jpg' },
+    { t:'Car Out Jam',              p:'com.Playgineers.CarOutJam',        k:'rustore',    period:'rustore', u:'https://www.rustore.ru/catalog/app/com.Playgineers.CarOutJam' },
+    { t:'Boat Escape',              p:'com.playgineers.boatescape',       k:'rustore',    period:'rustore', u:'https://www.rustore.ru/catalog/app/com.playgineers.boatescape' }
+  ];
+
+  let GAMES = STUB.map(g => ({
+    ...g,
+    loaded: false,
+    description: '',
+    shots: [],
+    extra: {},
+    icon: g.icon || null
+  }));
+
+  /* =========================================================
+     3. ХЕЛПЕРЫ
+     ========================================================= */
+  const initials = s => s.replace(/[^\p{L}\p{N} ]/gu, ' ')
+    .split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+  const hueOf = s => { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) % 360; return h; };
+  const esc = s => String(s == null ? '' : s)
+    .replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+  const plural = (n, one, few, many) => {
+    const m10 = n % 10, m100 = n % 100;
+    if (m10 === 1 && m100 !== 11) return one;
+    if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return few;
+    return many;
+  };
+
+  /* =========================================================
+     3.1. ФОТО ПРОФИЛЯ — пробуем несколько путей
+     ========================================================= */
+  (function loadProfilePhoto() {
+    const img = document.getElementById('profilePhoto');
+    const ph  = document.getElementById('profilePhotoPlaceholder');
+    if (!img) return;
+
+    const candidates = [
+      'assets/avatar.jpg',
+      'assets/avatar.png',
+      'assets/avatar.webp',
+      'photo.jpg',
+      'photo.png',
+      'photo.webp'
+    ];
+
+    let i = 0;
+    const tryNext = () => {
+      if (i >= candidates.length) return;          // все варианты исчерпаны — остаётся заглушка
+      img.src = candidates[i++];
+    };
+
+    img.addEventListener('load', () => {
+      img.classList.add('loaded');
+      if (ph) ph.hidden = true;
+    });
+    img.addEventListener('error', tryNext);
+
+    tryNext();
+  })();
+
+  /* =========================================================
+     4. ПРИМЕНЕНИЕ ДАННЫХ ИЗ games-data.js
+     ========================================================= */
+  function applyData(data) {
+    if (!data || !data.games) return;
+    GAMES = STUB.map(g => {
+      const d = data.games[g.p] || null;
+      if (!d) {
+        return { ...g, loaded: false, description: '', shots: [], extra: {}, icon: g.icon || null };
+      }
+      return {
+        ...g,
+        t: d.title || g.t,
+        icon: d.icon || g.icon || null,
+        description: d.description || '',
+        shots: Array.isArray(d.screenshots) ? d.screenshots : [],
+        extra: d.extra || {},
+        loaded: !!d.loaded
+      };
+    });
+  }
+
+  async function loadData() {
+    if (window.__GAMES_DATA && window.__GAMES_DATA.games) {
+      applyData(window.__GAMES_DATA);
+      renderAll();
+      return;
+    }
+    try {
+      const res = await fetch('games-data.json', { cache: 'no-store' });
+      if (res.ok) applyData(await res.json());
+    } catch { /* файла нет — работаем на заглушках */ }
+    renderAll();
+  }
+
+  /* =========================================================
+     5. РЕНДЕР
+     ========================================================= */
+  const periodsEl = document.getElementById('periods');
+  const filtersEl = document.getElementById('filters');
+
+  function cardHTML(g) {
+    const h = hueOf(g.t);
+    const ph = `background:linear-gradient(150deg,hsl(${h} 32% 19%),hsl(${(h + 42) % 360} 42% 9%))`;
+    const hasIcon = g.icon ? ` src="${esc(g.icon)}"` : '';
+    return `
+      <div class="card" role="button" tabindex="0" data-pkg="${esc(g.p)}"
+           data-platform="${g.k}"
+           aria-label="${esc(g.t)} — открыть подробности">
+        <div class="thumb">
+          <div class="thumb__ph" style="${ph}">${esc(initials(g.t))}</div>
+          <img class="thumb__img${g.icon ? ' loaded' : ''}"${hasIcon} alt="" loading="lazy"
+               decoding="async" referrerpolicy="no-referrer"
+               onload="this.classList.add('loaded')"
+               onerror="this.remove()">
+          <span class="chip">${PLATFORMS[g.k].short}</span>
+        </div>
+        <div class="card__title">${esc(g.t)}</div>
+        <div class="card__meta">${esc(g.p)}</div>
+      </div>`;
+  }
+
+  function periodHTML(p) {
+    const games = GAMES.filter(g => g.period === p.id);
+    if (!games.length) return '';
+    const n = games.length;
+    const countLabel = `${n} ${plural(n, 'проект', 'проекта', 'проектов')}`;
+
+    const cards = games.map((g, i) =>
+      cardHTML(g).replace('class="card"', `class="card" style="--d:${Math.min(i, 14) * 40}ms"`)
+    ).join('');
+
+    return `
+      <div class="period" data-period="${p.id}">
+        <div class="period__head">
+          <div class="period__time">${esc(p.label)}</div>
+          <div class="period__info">
+            <h3>${esc(p.role)}${p.company && p.company !== '—' ? ' · ' + esc(p.company) : ''}</h3>
+            <p>${esc(p.note)}</p>
+          </div>
+          <span class="period__count">${countLabel}</span>
+        </div>
+        <div class="grid">${cards}</div>
+      </div>`;
+  }
+
+  function renderAll() {
+    periodsEl.innerHTML = PERIODS.map(periodHTML).join('');
+
+    const counts = GAMES.reduce((a, g) => (a[g.k] = (a[g.k] || 0) + 1, a), {});
+    const filterDefs = [
+      { key: 'all', label: 'Все', count: GAMES.length },
+      ...Object.keys(PLATFORMS)
+        .filter(k => counts[k])
+        .map(k => ({ key: k, label: PLATFORMS[k].label, count: counts[k] }))
+    ];
+    filtersEl.innerHTML = filterDefs.map((f, i) =>
+      `<button class="filter${i === 0 ? ' is-active' : ''}" data-filter="${f.key}">
+         ${f.label}<em>${f.count}</em>
+       </button>`
+    ).join('');
+
+    document.querySelector('[data-stat="games"]').textContent = GAMES.length;
+    document.querySelector('[data-stat="platforms"]').textContent = Object.keys(counts).length;
+
+    document.querySelectorAll('.card:not(.in)').forEach(el => io.observe(el));
+
+    const active = filtersEl.querySelector('.filter.is-active');
+    if (active && active.dataset.filter !== 'all') applyFilter(active.dataset.filter);
+  }
+
+  function applyFilter(key) {
+    periodsEl.querySelectorAll('.period').forEach(period => {
+      let visible = 0;
+      period.querySelectorAll('.card').forEach(card => {
+        const match = key === 'all' || card.dataset.platform === key;
+        card.hidden = !match;
+        if (match) visible++;
+      });
+      period.hidden = visible === 0;
+    });
+  }
+
+  filtersEl.addEventListener('click', e => {
+    const btn = e.target.closest('.filter');
+    if (!btn) return;
+    filtersEl.querySelectorAll('.filter').forEach(b => b.classList.toggle('is-active', b === btn));
+    applyFilter(btn.dataset.filter);
+  });
+
+  /* =========================================================
+     6. МОДАЛКА
+     ========================================================= */
+  const modal = document.getElementById('modal');
+  const modalContent = document.getElementById('modalContent');
+  const closeBtn = modal.querySelector('.modal__close');
+
+  function openModal() {
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => closeBtn.focus({ preventScroll: true }), 30);
+  }
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  modal.addEventListener('click', e => { if (e.target.closest('[data-close]')) closeModal(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+
+  function renderModal(g) {
+    const cover = g.icon;
+    const h = hueOf(g.t);
+    const ph = `background:linear-gradient(150deg,hsl(${h} 32% 19%),hsl(${(h + 42) % 360} 42% 9%))`;
+
+    const coverHTML = cover
+      ? `<img src="${esc(cover)}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`
+      : '';
+
+    const period = PERIODS.find(p => p.id === g.period);
+    const periodBadge = period ? `<span class="tag">${esc(period.label)}</span>` : '';
+
+    const badges = [
+      `<span class="tag">${esc(PLATFORMS[g.k].label)}</span>`,
+      periodBadge,
+      ...Object.entries(g.extra || {}).map(([k, v]) => `<span class="tag">${esc(k)}: ${esc(v)}</span>`)
+    ].filter(Boolean).join('');
+
+    const shotsHTML = (g.shots && g.shots.length)
+      ? `<div class="modal__shots">
+           ${g.shots.map(s => `
+             <a href="${esc(s)}" target="_blank" rel="noopener">
+               <img src="${esc(s)}" alt="" loading="lazy"
+                    referrerpolicy="no-referrer" onerror="this.remove()">
+             </a>`).join('')}
+         </div>`
+      : `<p class="modal__desc" style="font-style:italic;opacity:.7">Скриншоты не найдены.</p>`;
+
+    const descHTML = g.description ? `<p class="modal__desc">${esc(g.description)}</p>` : '';
+
+    modalContent.innerHTML = `
+      <div class="modal__cover" style="${ph}">
+        ${coverHTML}
+        <span class="chip">${PLATFORMS[g.k].short}</span>
+      </div>
+      <div class="modal__body">
+        <h2>${esc(g.t)}</h2>
+        <p class="modal__pkg">${esc(g.p)}</p>
+        <div class="modal__badges">${badges}</div>
+        ${descHTML}
+        ${shotsHTML}
+        <div class="modal__actions">
+          <a class="btn btn--primary" href="${esc(g.u)}" target="_blank" rel="noopener">
+            Открыть в ${esc(PLATFORMS[g.k].label)}
+          </a>
+          ${g.am ? `<a class="btn" href="${esc(g.am)}" target="_blank" rel="noopener">Статистика AppMagic</a>` : ''}
+        </div>
+      </div>`;
+  }
+
+  function openGame(pkg) {
+    const g = GAMES.find(x => x.p === pkg);
+    if (!g) return;
+    renderModal(g);
+    openModal();
+  }
+
+  periodsEl.addEventListener('click', e => {
+    const card = e.target.closest('.card');
+    if (!card) return;
+    openGame(card.dataset.pkg);
+  });
+  periodsEl.addEventListener('keydown', e => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const card = e.target.closest('.card');
+    if (!card) return;
+    e.preventDefault();
+    openGame(card.dataset.pkg);
+  });
+
+  /* =========================================================
+     7. ПОЯВЛЕНИЕ, ТЕМА, ГОД
+     ========================================================= */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const root = document.documentElement;
+  const savedTheme = localStorage.getItem('portfolio:theme');
+  if (savedTheme) root.setAttribute('data-theme', savedTheme);
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('portfolio:theme', next);
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  loadData();
+</script>
+</body>
+</html>
