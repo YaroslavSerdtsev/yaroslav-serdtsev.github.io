@@ -209,7 +209,7 @@
     .modal__badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
     .modal__desc{margin:0 0 16px;color:var(--muted);font-size:13px;line-height:1.6;white-space:pre-line}
 
-    /* Скриншоты: без обрезки, под пропорции */
+    /* Скриншоты: без обрезки, клик → лайтбокс */
     .modal__shots{
       display:grid;
       grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
@@ -217,10 +217,12 @@
       margin-bottom:0;
       align-items:start;
     }
-    .modal__shots a{display:block;line-height:0}
+    .modal__shots button{
+      display:block;width:100%;padding:0;border:0;background:transparent;
+      cursor:zoom-in;line-height:0;font:inherit;
+    }
     .modal__shots img{
-      width:100%;
-      height:auto;
+      width:100%;height:auto;
       border-radius:8px;
       border:1px solid var(--border);
       background:var(--bg);
@@ -232,6 +234,124 @@
     .modal__actions{display:flex;flex-wrap:wrap;gap:8px}
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
     @keyframes modalIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+
+    /* ═══ Lightbox: полноэкранная лента скриншотов ═══ */
+    .lightbox{
+      position:fixed;inset:0;z-index:200;
+      display:none;
+      align-items:center;justify-content:center;
+      padding:56px 72px;
+    }
+    .lightbox.is-open{display:flex}
+    .lightbox__backdrop{
+      position:absolute;inset:0;
+      background:color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+      animation:fadeIn .2s ease;
+    }
+    .lightbox__stage{
+      position:relative;
+      z-index:1;
+      max-width:100%;
+      max-height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      animation:lbIn .28s cubic-bezier(.2,.8,.2,1);
+    }
+    .lightbox__img{
+      max-width:100%;
+      max-height:calc(100vh - 112px);
+      width:auto;height:auto;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:var(--bg-soft);
+      box-shadow:0 40px 100px -30px rgba(0,0,0,.9);
+      object-fit:contain;
+      user-select:none;
+      -webkit-user-drag:none;
+    }
+    .lightbox__close{
+      position:absolute;top:16px;right:16px;z-index:3;
+      width:40px;height:40px;display:grid;place-items:center;
+      border-radius:999px;
+      border:1px solid var(--border-hi);
+      background:var(--bg-soft);
+      color:var(--text);
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .lightbox__close:hover{
+      background:var(--accent);
+      color:var(--accent-ink);
+      border-color:var(--accent);
+      transform:rotate(90deg);
+    }
+    .lightbox__close svg{width:14px;height:14px}
+
+    .lightbox__nav{
+      position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+      width:44px;height:44px;display:grid;place-items:center;
+      border-radius:999px;
+      border:1px solid var(--border-hi);
+      background:var(--bg-soft);
+      color:var(--text);
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .lightbox__nav:hover{
+      background:var(--accent);
+      color:var(--accent-ink);
+      border-color:var(--accent);
+    }
+    .lightbox__nav--prev{left:20px}
+    .lightbox__nav--next{right:20px}
+    .lightbox__nav svg{width:16px;height:16px}
+    .lightbox__nav[hidden]{display:none}
+
+    .lightbox__counter{
+      position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
+      z-index:3;
+      padding:7px 14px;
+      border-radius:999px;
+      background:var(--bg-soft);
+      border:1px solid var(--border-hi);
+      color:var(--muted);
+      font-size:11.5px;
+      letter-spacing:.05em;
+      font-variant-numeric:tabular-nums;
+    }
+    .lightbox__caption{
+      position:absolute;top:20px;left:50%;transform:translateX(-50%);
+      z-index:3;
+      max-width:60%;
+      padding:7px 14px;
+      border-radius:999px;
+      background:var(--bg-soft);
+      border:1px solid var(--border-hi);
+      color:var(--muted);
+      font-size:11.5px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .lightbox__caption[hidden]{display:none}
+
+    @keyframes lbIn{
+      from{opacity:0;transform:scale(.97)}
+      to{opacity:1;transform:none}
+    }
+
+    @media(max-width:640px){
+      .lightbox{padding:44px 12px 64px}
+      .lightbox__img{max-height:calc(100vh - 108px);border-radius:8px}
+      .lightbox__close{top:8px;right:8px;width:36px;height:36px}
+      .lightbox__nav{width:38px;height:38px}
+      .lightbox__nav--prev{left:6px}
+      .lightbox__nav--next{right:6px}
+      .lightbox__caption{max-width:78%;font-size:11px;padding:6px 11px}
+      .lightbox__counter{font-size:11px;padding:6px 11px;bottom:14px}
+    }
 
     /* Footer */
     footer{border-top:1px solid var(--border);padding:24px 0 32px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:11.5px;color:var(--muted)}
@@ -440,6 +560,37 @@
     </button>
     <div class="modal__content" id="modalContent"></div>
   </div>
+</div>
+
+<!-- ═══ Лайтбокс: полноэкранная лента скриншотов ═══ -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Просмотр скриншота">
+  <div class="lightbox__backdrop" data-lb-close></div>
+
+  <div class="lightbox__caption" id="lbCaption" hidden></div>
+
+  <button class="lightbox__close" data-lb-close aria-label="Закрыть">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M6 6l12 12M18 6L6 18"/>
+    </svg>
+  </button>
+
+  <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Предыдущий">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 18l-6-6 6-6"/>
+    </svg>
+  </button>
+
+  <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Следующий">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 6l6 6-6 6"/>
+    </svg>
+  </button>
+
+  <div class="lightbox__stage">
+    <img class="lightbox__img" id="lbImg" alt="">
+  </div>
+
+  <div class="lightbox__counter" id="lbCounter"></div>
 </div>
 
 <script src="games-data.js"></script>
@@ -694,7 +845,9 @@
   }
   modal.addEventListener('click', e => { if (e.target.closest('[data-close]')) closeModal(); });
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+    if (e.key === 'Escape' && modal.classList.contains('is-open') && !document.getElementById('lightbox').classList.contains('is-open')) {
+      closeModal();
+    }
   });
 
   /* Подгоняем сетку скриншотов под их пропорции */
@@ -736,7 +889,6 @@
     const h = hueOf(g.t);
     const ph = `background:linear-gradient(150deg,hsl(${h} 32% 19%),hsl(${(h + 42) % 360} 42% 9%))`;
 
-    // Иконка-аватарка: если есть — img, если нет — градиент с инициалами
     const iconHTML = g.icon
       ? `<img src="${esc(g.icon)}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`
       : `<div class="thumb__ph" style="${ph}">${esc(initials(g.t))}</div>`;
@@ -752,11 +904,11 @@
 
     const shotsHTML = (g.shots && g.shots.length)
       ? `<div class="modal__shots">
-           ${g.shots.map(s => `
-             <a href="${esc(s)}" target="_blank" rel="noopener">
+           ${g.shots.map((s, i) => `
+             <button type="button" data-shot="${i}" aria-label="Скриншот ${i + 1}">
                <img src="${esc(s)}" alt="" loading="lazy"
                     referrerpolicy="no-referrer" onerror="this.remove()">
-             </a>`).join('')}
+             </button>`).join('')}
          </div>`
       : `<p class="modal__desc" style="font-style:italic;opacity:.7">Скриншоты не найдены.</p>`;
 
@@ -828,6 +980,118 @@
   });
 
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* =========================================================
+     8. ЛАЙТБОКС — лента скриншотов поверх страницы
+     ========================================================= */
+  const lb        = document.getElementById('lightbox');
+  const lbImg     = document.getElementById('lbImg');
+  const lbPrev    = document.getElementById('lbPrev');
+  const lbNext    = document.getElementById('lbNext');
+  const lbCounter = document.getElementById('lbCounter');
+  const lbCaption = document.getElementById('lbCaption');
+
+  let lbShots = [];
+  let lbIndex = 0;
+
+  function lbRender() {
+    if (!lbShots.length) return;
+    lbImg.src = lbShots[lbIndex];
+
+    const total = lbShots.length;
+    lbCounter.textContent = `${lbIndex + 1} / ${total}`;
+
+    lbPrev.hidden = total < 2;
+    lbNext.hidden = total < 2;
+
+    try {
+      const file = lbShots[lbIndex].split('/').pop().split('?')[0];
+      lbCaption.textContent = file || `Скриншот ${lbIndex + 1}`;
+      lbCaption.hidden = !file;
+    } catch {
+      lbCaption.hidden = true;
+    }
+
+    // предзагрузка соседей
+    [lbIndex - 1, lbIndex + 1].forEach(i => {
+      if (i < 0 || i >= total) return;
+      const im = new Image();
+      im.src = lbShots[i];
+    });
+  }
+
+  function lbOpen(shots, startIdx = 0) {
+    lbShots = shots.slice();
+    lbIndex = Math.max(0, Math.min(startIdx, lbShots.length - 1));
+    lbRender();
+    lb.classList.add('is-open');
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function lbClose() {
+    lb.classList.remove('is-open');
+    lb.setAttribute('aria-hidden', 'true');
+    if (!modal.classList.contains('is-open')) {
+      document.body.style.overflow = '';
+    }
+    setTimeout(() => { lbImg.removeAttribute('src'); }, 200);
+  }
+
+  function lbGo(delta) {
+    if (lbShots.length < 2) return;
+    lbIndex = (lbIndex + delta + lbShots.length) % lbShots.length;
+    lbRender();
+  }
+
+  /* Открытие по клику на скриншот в модалке */
+  modalContent.addEventListener('click', e => {
+    const btn = e.target.closest('.modal__shots button[data-shot]');
+    if (!btn) return;
+    const urls = [...modalContent.querySelectorAll('.modal__shots img')]
+      .map(im => im.getAttribute('src'))
+      .filter(Boolean);
+    if (!urls.length) return;
+    lbOpen(urls, Number(btn.dataset.shot));
+  });
+
+  /* Управление */
+  lb.addEventListener('click', e => {
+    if (e.target.closest('[data-lb-close]')) lbClose();
+  });
+  lbPrev.addEventListener('click', () => lbGo(-1));
+  lbNext.addEventListener('click', () => lbGo(+1));
+
+  /* Клавиатура */
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('is-open')) return;
+    if (e.key === 'Escape') { e.stopPropagation(); lbClose(); }
+    else if (e.key === 'ArrowLeft')  { e.preventDefault(); lbGo(-1); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); lbGo(+1); }
+  }, true);
+
+  /* Свайпы на мобильном */
+  (function enableLightboxSwipe() {
+    let x0 = 0, y0 = 0, tracking = false;
+    const stage = lb.querySelector('.lightbox__stage');
+
+    stage.addEventListener('touchstart', e => {
+      if (e.touches.length !== 1) return;
+      x0 = e.touches[0].clientX;
+      y0 = e.touches[0].clientY;
+      tracking = true;
+    }, { passive: true });
+
+    stage.addEventListener('touchend', e => {
+      if (!tracking) return;
+      tracking = false;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - x0;
+      const dy = t.clientY - y0;
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+      lbGo(dx < 0 ? +1 : -1);
+    }, { passive: true });
+  })();
 
   loadData();
 </script>
